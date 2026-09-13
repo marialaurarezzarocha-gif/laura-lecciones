@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Día 39 — El Elefante</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: Georgia, serif; background: #F7F2EA; color: #2C2420; min-height: 100vh; }
+  .header { background: linear-gradient(160deg, #3A2050 0%, #5C3D7A 100%); padding: 2rem 1.5rem; }
+  .header p.tag { font-family: sans-serif; font-size: 11px; letter-spacing: 3px; color: #C9B8E0; text-transform: uppercase; margin-bottom: 4px; }
+  .header p.sub2 { font-family: sans-serif; font-size: 12px; letter-spacing: 2px; color: #D4B896; text-transform: uppercase; margin-bottom: 8px; }
+  .header h1 { font-size: 24px; font-weight: 400; color: #fff; margin-bottom: 16px; }
+  .progress-bar { background: rgba(255,255,255,0.15); border-radius: 2px; height: 4px; }
+  .progress-fill { background: #A67C52; height: 100%; border-radius: 2px; width: 0%; transition: width 0.4s; }
+  .content { padding: 1.5rem; max-width: 660px; margin: 0 auto; }
+  p { font-size: 15px; line-height: 2; margin-bottom: 16px; }
+  .capitular { float: left; font-size: 90px; line-height: 0.8; color: #A67C52; margin-right: 16px; margin-top: 8px; opacity: 0.85; font-family: Georgia, serif; }
+  .clearfix::after { content: ""; display: table; clear: both; }
+  .story-block { background: #FFFCF8; border-left: 3px solid #5C3D7A; border-radius: 0 10px 10px 0; padding: 16px 18px; margin: 20px 0; box-shadow: 0 2px 8px rgba(92,61,122,0.06); }
+  .key-block { background: #EDE6F5; border-radius: 12px; padding: 16px 20px; margin: 20px 0; border: 0.5px solid rgba(92,61,122,0.2); }
+  .key-block p { font-style: italic; color: #3A2050; margin: 0; }
+  .quote { text-align: center; padding: 20px; margin: 20px 0; }
+  .quote p { font-style: italic; color: #5C3D7A; font-size: 17px; margin-bottom: 6px; line-height: 1.8; }
+  .quote span { font-size: 13px; color: #6B5E58; font-family: sans-serif; }
+  .dialogo { margin: 14px 0; }
+  .dialogo .autor { font-size: 12px; font-family: sans-serif; color: #6B5E58; margin-bottom: 3px; font-style: italic; }
+  .dialogo .texto { font-style: italic; font-weight: 600; color: #A67C52; font-size: 15px; line-height: 1.7; }
+  .psico-box { border: 1.5px solid #A67C52; border-radius: 12px; padding: 18px 20px; margin: 24px 0; background: #F9F3EB; }
+  .psico-header { display: flex; align-items: center; gap: 8px; margin-bottom: 10px; }
+  .psico-header span.label { font-family: sans-serif; font-size: 11px; font-weight: 700; color: #A67C52; letter-spacing: 1.5px; text-transform: uppercase; }
+  .psico-q { font-style: italic; color: #6B4E2A; font-size: 15px; line-height: 1.7; margin-bottom: 12px; }
+  .reflex-section { background: #FFFCF8; border-radius: 12px; padding: 1.5rem; margin-bottom: 8px; border: 0.5px solid #E0D8CC; }
+  .reflex-title { font-family: sans-serif; font-weight: 700; font-size: 12px; color: #5C3D7A; letter-spacing: 1.5px; text-transform: uppercase; margin-bottom: 16px; }
+  .reflex-item { margin-bottom: 14px; }
+  .reflex-item p { font-style: italic; color: #6B4E2A; font-size: 14px; line-height: 1.7; margin-bottom: 6px; }
+  .dia-hoy { background: #EDE6F5; border-radius: 12px; padding: 1.5rem; margin: 24px 0; border: 0.5px solid rgba(92,61,122,0.2); }
+  .dia-hoy-title { font-family: sans-serif; font-weight: 700; font-size: 12px; color: #5C3D7A; letter-spacing: 1.5px; text-transform: uppercase; margin-bottom: 12px; }
+  textarea { width: 100%; padding: 10px 12px; border-radius: 8px; border: 1px solid #E0D8CC; background: #FFFCF8; color: #2C2420; font-size: 14px; line-height: 1.8; resize: vertical; font-family: Georgia, serif; outline: none; }
+  .btns { display: flex; gap: 10px; margin-top: 16px; }
+  .btn-save { flex: 2; padding: 13px 0; background: #5C3D7A; color: #fff; border: none; border-radius: 10px; font-size: 15px; font-weight: 600; cursor: pointer; font-family: sans-serif; }
+  .btn-dl { flex: 1; padding: 13px 0; background: #FFFCF8; color: #2C2420; border: 1px solid #E0D8CC; border-radius: 10px; font-size: 14px; cursor: pointer; font-family: sans-serif; }
+  .copyright { font-family: sans-serif; font-size: 12px; color: #6B5E58; text-align: center; margin: 24px 0; }
+  .btn-download-page { display: block; width: 100%; padding: 13px 0; background: #3A2050; color: #fff; border: none; border-radius: 10px; font-size: 15px; font-weight: 600; cursor: pointer; font-family: sans-serif; margin-bottom: 10px; text-align: center; }
+</style>
+</head>
+<body>
+
+<div class="header">
+  <p class="tag">Día 39 de la cuenta atrás</p>
+  <p class="sub2">Cuentos de Sabiduría Milenaria · Patrimonio Ético de la Humanidad</p>
+  <h1>El Elefante</h1>
+  <div class="progress-bar"><div class="progress-fill" id="progressFill"></div></div>
+</div>
+
+<div class="content">
+
+  <div class="clearfix">
+    <span class="capitular">É</span>
+    <p>rase una vez, en los confines de una tierra que se hallaba ni muy al Norte ni muy al Sur, ni tampoco muy al Este ni muy al Oeste, una ciudad que tenía una muy extraña particularidad: todos sus habitantes eran ciegos. Pero comoquiera que su contacto con los poseedores de la visión era cada vez más raro y escaso, habían olvidado su condición y se habían acostumbrado a esa forma de vida con toda normalidad.</p>
+  </div>
+
+  <p>En las tradiciones de aquella comunidad, al igual que en muchas otras, se hablaba de la existencia de un misterioso animal que nadie podía definir ni describir, y al que los buscadores perseguían en mil y un intentos por conocer. Tan sólo se sabía que tenía por nombre <strong>Elefante</strong> y que, un día tampoco muy lejano, se le llegaría a conocer.</p>
+
+  <p>Sucedió en un otoño ventoso que un rey venido de una lejana tierra, acompañado de su imponente cortejo, llegó con un elefante acampando cerca del lugar. El rumor se extendió y la ciudad de los ciegos sintió por fin llegada su oportunidad de conocer al elefante. Así, los más aventureros se marcharon a investigar y comprobar la verdad definitiva.</p>
+
+  <p>Conforme uno a uno llegaban junto a su imponente presencia, tanteaban y tocaban con minuciosidad lo que cada cual podía percibir. Cada uno pensó que al fin conocía el Misterio. Poco a poco fueron regresando a la ciudad, donde sus conciudadanos esperaban ansiosos.</p>
+
+  <p>Llegó el momento de exponer públicamente la forma y aspecto del elefante, de manera tal que todo el pueblo escuchara lo que aquellos estudiosos iban a disertar.</p>
+
+  <p>Uno de ellos dijo: <span style="font-style:italic;color:#3A2050">"Adopta una forma grande, rugosa, ancha y gruesa como un felpudo viviente..."</span> El pueblo que escuchaba exclamó en un rumor de sorpresa.</p>
+
+  <p>Cuando le tocó el turno al que había palpado la trompa, dijo a los presentes: <span style="font-style:italic;color:#3A2050">"Yo conozco los hechos reales. Puedo jurar por el honor de mi estirpe que es como un tubo recto y hueco, horrible y destructivo."</span> Un nuevo rumor de comentarios y exclamaciones se manifestó entre los presentes.</p>
+
+  <p>Seguidamente habló el que había palpado la panza: <span style="font-style:italic;color:#3A2050">"Hacedme caso. Yo sé de verdad cómo es. Es una masa enorme, abultada e inabarcable. Permanece tranquila y parece moverse con mucha lentitud."</span></p>
+
+  <p>Y por fin le tocó el turno al último, que comoquiera que había tocado sus patas dijo: <span style="font-style:italic;color:#3A2050">"Es poderoso, recto y firme como un pilar. Os lo juro."</span></p>
+
+  <p>El pueblo ya había tomado posiciones y todos discutían acerca de los testimonios. De pronto, en medio de la gran controversia, se oyó la música de alguien distante que se aproximaba, apagando todas las voces:</p>
+
+  <div class="quote">
+    <p>"El conocimiento de lo Real no es compañero de los ciegos,<br>sólo con otros ojos conocerás insospechados cielos."</p>
+  </div>
+
+  <!-- Pregunta principal -->
+  <div class="psico-box">
+    <div class="psico-header"><span>📓</span><span class="label">Diario del Psiconauta</span></div>
+    <p class="psico-q">Y ahora, ¿qué enseñanza de este cuento toca tu corazón?</p>
+    <textarea id="ensenanza" rows="4" placeholder="Dejate brotar libremente..."></textarea>
+  </div>
+
+  <!-- Reflexiones -->
+  <div class="reflex-section">
+    <p class="reflex-title">✦ Reflexiones para sentir</p>
+    <div class="reflex-item">
+      <p>¿Te suele suceder que la creencia y punto de vista contrario al tuyo te resulta absolutamente errónea e inaceptable?</p>
+      <textarea id="ref0" rows="2" placeholder="Tu reflexión..."></textarea>
+    </div>
+    <div class="reflex-item">
+      <p>Cuando no conviene a tus intereses ¿lo invalidás por encima de todo?</p>
+      <textarea id="ref1" rows="2" placeholder="Tu reflexión..."></textarea>
+    </div>
+    <div class="reflex-item">
+      <p>Cuando defendés un punto de vista ¿sos consciente de la validez de lo contrario?</p>
+      <textarea id="ref2" rows="2" placeholder="Tu reflexión..."></textarea>
+    </div>
+    <div class="reflex-item">
+      <p>¿En qué áreas de tu vida has sentido que estabas en posesión de la verdad más absoluta? ¿Qué puede haber realmente de absoluto en tu vida?</p>
+      <textarea id="ref3" rows="2" placeholder="Tu reflexión..."></textarea>
+    </div>
+    <div class="reflex-item">
+      <p>¿Pensás que son conjugables todos los puntos de vista? ¿Son en realidad subjetivas y, por tanto, relativas todas "las verdades"?</p>
+      <textarea id="ref4" rows="2" placeholder="Tu reflexión..."></textarea>
+    </div>
+    <div class="reflex-item">
+      <p>¿En qué medida estás dispuesta a integrar los diferentes criterios que cada participante de un grupo aporta en aras a lograr un objetivo?</p>
+      <textarea id="ref5" rows="2" placeholder="Tu reflexión..."></textarea>
+    </div>
+    <div class="reflex-item">
+      <p>¿Has actuado alguna vez como si el desacuerdo fuera desamor? ¿Cuándo no se opina como vos, sentís que esas diferencias te enriquecen?</p>
+      <textarea id="ref6" rows="2" placeholder="Tu reflexión..."></textarea>
+    </div>
+    <div class="reflex-item">
+      <p>¿Pensás que la intuición puede ser una forma de percepción que nos conecta con la Realidad de forma directa?</p>
+      <textarea id="ref7" rows="2" placeholder="Tu reflexión..."></textarea>
+    </div>
+  </div>
+
+  <!-- En el día de hoy -->
+  <div class="dia-hoy">
+    <p class="dia-hoy-title">En el día de hoy</p>
+    <div class="psico-box" style="margin:0">
+      <div class="psico-header"><span>📓</span><span class="label">Diario del Psiconauta</span></div>
+      <p class="psico-q">Permanecé en atención a las actitudes que solés generar ante creencias y criterios «diferentes». Observá si tu mente siente algún tipo de amenaza ante la diferencia de criterio.</p>
+      <textarea id="dia_hoy" rows="3" placeholder="¿Qué observás en vos hoy al respecto?"></textarea>
+    </div>
+  </div>
+
+  <p class="copyright">© José María Doria · Escuela Española de Desarrollo Transpersonal (EDT)</p>
+
+  <div class="btns">
+    <button class="btn-save" onclick="guardar()">Guardar mis reflexiones</button>
+    <button class="btn-dl" onclick="descargar()">Descargar mis reflexiones 📄</button>
+  </div>
+</div>
+
+<script>
+function descargarPagina(){ const a=document.createElement('a'); a.href=URL.createObjectURL(new Blob([document.documentElement.outerHTML],{type:'text/html'})); a.download='dia39_el_elefante.html'; a.click(); }
+
+const CAMPOS = ['ensenanza','ref0','ref1','ref2','ref3','ref4','ref5','ref6','ref7','dia_hoy'];
+
+function updateProgress(){
+  const filled = CAMPOS.filter(id => document.getElementById(id)?.value.trim()).length;
+  document.getElementById('progressFill').style.width = Math.round((filled/CAMPOS.length)*100)+'%';
+}
+
+CAMPOS.forEach(id => document.getElementById(id)?.addEventListener('input', updateProgress));
+
+function guardar(){
+  const data = Object.fromEntries(CAMPOS.map(id => [id, document.getElementById(id)?.value||'']));
+  localStorage.setItem('dia39_resp', JSON.stringify(data));
+  const btn = document.querySelector('.btn-save');
+  btn.textContent = '✓ Guardado';
+  setTimeout(()=> btn.textContent = 'Guardar mis reflexiones', 2000);
+}
+
+function descargar(){
+  const PREGUNTAS = [
+    ['¿Qué enseñanza de este cuento toca tu corazón?','ensenanza'],
+    ['¿La creencia contraria te resulta inaceptable?','ref0'],
+    ['¿La invalidás cuando no conviene a tus intereses?','ref1'],
+    ['¿Sos consciente de la validez de lo contrario?','ref2'],
+    ['¿En qué áreas sentiste poseer la verdad absoluta?','ref3'],
+    ['¿Son relativas todas las verdades?','ref4'],
+    ['¿Integrás los criterios de otros para lograr objetivos?','ref5'],
+    ['¿El desacuerdo es desamor para vos?','ref6'],
+    ['¿La intuición nos conecta con la Realidad?','ref7'],
+    ['En el día de hoy','dia_hoy'],
+  ];
+  const lines = [
+    'MIS RESPUESTAS — DÍA 39','40 Días de Atención Sostenida',
+    '─────────────────────────────────────────','',
+    'NOTA: Este documento contiene únicamente tus reflexiones personales.',
+    'El contenido de la lección permanece en la plataforma.','','─────────────────────────────────────────','',
+    ...PREGUNTAS.flatMap(([q,id])=>[`▸ ${q}`, document.getElementById(id)?.value||'(sin completar)',''])
+  ];
+  const a = document.createElement('a');
+  a.href = URL.createObjectURL(new Blob([lines.join('\n')],{type:'text/plain'}));
+  a.download = 'reflexiones_dia39.txt'; a.click();
+}
+
+try {
+  const saved = JSON.parse(localStorage.getItem('dia39_resp')||'{}');
+  CAMPOS.forEach(id => { if(saved[id]) document.getElementById(id).value = saved[id]; });
+  updateProgress();
+} catch(e){}
+</script>
+</body>
+</html>

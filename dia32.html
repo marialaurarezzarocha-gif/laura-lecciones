@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Día 32 — La Contribución</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: Georgia, serif; background: #F7F2EA; color: #2C2420; min-height: 100vh; }
+  .header { background: linear-gradient(160deg, #3A2050 0%, #5C3D7A 100%); padding: 2rem 1.5rem; }
+  .header p.tag { font-family: sans-serif; font-size: 11px; letter-spacing: 3px; color: #C9B8E0; text-transform: uppercase; margin-bottom: 4px; }
+  .header p.sub2 { font-family: sans-serif; font-size: 12px; color: #D4B896; text-transform: uppercase; letter-spacing: 2px; margin-bottom: 8px; }
+  .header h1 { font-size: 24px; font-weight: 400; color: #fff; margin-bottom: 16px; }
+  .progress-bar { background: rgba(255,255,255,0.15); border-radius: 2px; height: 4px; }
+  .progress-fill { background: #A67C52; height: 100%; border-radius: 2px; width: 0%; transition: width 0.4s; }
+  .content { padding: 1.5rem; max-width: 660px; margin: 0 auto; }
+  p { font-size: 15px; line-height: 2; margin-bottom: 16px; }
+  .quote { text-align: center; padding: 20px; margin: 20px 0; }
+  .quote p { font-style: italic; color: #5C3D7A; font-size: 16px; margin-bottom: 6px; line-height: 1.8; }
+  .quote span { font-size: 13px; color: #6B5E58; font-family: sans-serif; }
+  .key-block { background: #EDE6F5; border-radius: 12px; padding: 16px 20px; margin: 20px 0; text-align: center; }
+  .key-block p { font-style: italic; color: #3A2050; margin: 0; line-height: 1.8; font-size: 16px; }
+  .niveles-vedicos { background: #FFFCF8; border-radius: 12px; padding: 1.5rem; margin: 20px 0; border: 0.5px solid #E0D8CC; }
+  .niveles-vedicos h3 { font-family: sans-serif; font-weight: 700; font-size: 12px; color: #5C3D7A; letter-spacing: 1.5px; text-transform: uppercase; margin-bottom: 12px; }
+  .nivel-option { display: flex; gap: 12px; align-items: flex-start; padding: 10px 14px; border-radius: 8px; margin-bottom: 8px; cursor: pointer; border: 1.5px solid #E0D8CC; transition: all 0.15s; }
+  .nivel-option:hover { border-color: #5C3D7A; background: #F5F2FB; }
+  .nivel-option.selected { border-color: #5C3D7A; background: #EDE6F5; }
+  .nivel-num { background: #E0D8CC; color: #fff; border-radius: 50%; width: 24px; height: 24px; display: flex; align-items: center; justify-content: center; font-size: 12px; font-weight: 700; flex-shrink: 0; font-family: sans-serif; }
+  .nivel-option.selected .nivel-num { background: #5C3D7A; }
+  .psico-box { border: 1.5px solid #A67C52; border-radius: 12px; padding: 18px 20px; margin: 24px 0; background: #F9F3EB; }
+  .psico-header { display: flex; align-items: center; gap: 8px; margin-bottom: 10px; }
+  .psico-header span.label { font-family: sans-serif; font-size: 11px; font-weight: 700; color: #A67C52; letter-spacing: 1.5px; text-transform: uppercase; }
+  .psico-q { font-style: italic; color: #6B4E2A; font-size: 15px; line-height: 1.7; margin-bottom: 12px; }
+  textarea { width: 100%; padding: 10px 12px; border-radius: 8px; border: 1px solid #E0D8CC; background: #FFFCF8; color: #2C2420; font-size: 14px; line-height: 1.8; resize: vertical; font-family: Georgia, serif; outline: none; }
+  .highlight { color: #5C3D7A; font-weight: 600; }
+  .btn-download-page { display: block; width: 100%; padding: 13px 0; background: #3A2050; color: #fff; border: none; border-radius: 10px; font-size: 15px; font-weight: 600; cursor: pointer; font-family: sans-serif; margin-bottom: 10px; text-align: center; }
+  .btns { display: flex; gap: 10px; }
+  .btn-save { flex: 2; padding: 13px 0; background: #5C3D7A; color: #fff; border: none; border-radius: 10px; font-size: 15px; font-weight: 600; cursor: pointer; font-family: sans-serif; }
+  .btn-dl { flex: 1; padding: 13px 0; background: #FFFCF8; color: #2C2420; border: 1px solid #E0D8CC; border-radius: 10px; font-size: 14px; cursor: pointer; font-family: sans-serif; }
+  .copyright { font-family: sans-serif; font-size: 12px; color: #6B5E58; text-align: center; margin: 24px 0; }
+</style>
+</head>
+<body>
+<div class="header">
+  <p class="tag">Día 32 de la cuenta atrás</p>
+  <p class="sub2">Tecnología de la Transformación</p>
+  <h1>La Contribución</h1>
+  <div class="progress-bar"><div class="progress-fill" id="progressFill"></div></div>
+</div>
+<div class="content">
+
+  <div class="quote">
+    <p>"Jamás se ha conseguido nada espléndido que no haya sido logrado por quienes se atrevieron a creer que había en su interior algo superior a las circunstancias."</p>
+    <span>— Bruce Barton</span>
+  </div>
+
+  <p>La verdadera dimensión humana y espiritual de una persona se suele manifestar en hechos, a través de los cuales su individualidad se muestra consciente de su relación con la totalidad. Una célula de nuestro cuerpo posee en sí misma la información de la totalidad — así como los miles de billones de células que componen nuestro cuerpo pueden ir tomando conciencia de que forman un todo.</p>
+
+  <p>Cuando el ser humano en su proyecto personal de progreso se plantea en qué medida está <span class="highlight">contribuyendo</span> al medio que lo rodea, no cabe duda que, además de aumentar su autoestima como benefactor, se abrirán en su interior una serie de puertas en momentos no casuales y "milagrosos".</p>
+
+  <div class="key-block">
+    <p>"Yo valgo dos y tú vales dos, pero juntos no valemos cuatro, sino ocho."<br><span style="font-size:13px;color:#6B5E58;font-family:sans-serif">Ley de la Sinergia</span></p>
+  </div>
+
+  <div class="psico-box">
+    <div class="psico-header"><span>📓</span><span class="label">Diario del Psiconauta</span></div>
+    <p class="psico-q">Observá tu vida cotidiana: ¿en qué áreas se manifiesta la Ley de la Sinergia? ¿Cuál es la mejor cualidad que aportás en el trabajo en equipo?</p>
+    <textarea id="sinergia" rows="4" placeholder="¿Dónde 1+1 = más que 2 en tu vida?"></textarea>
+  </div>
+
+  <p>El Universo apoya tu voluntad y, por tanto, todo aquello que creas merecer. Esta función ha supuesto el principio más nuclear de nuestra existencia en el Kosmos y se llama <strong>AMOR</strong>. El verdadero amor se expresa como algo más allá del sentimiento y la pasión — un amor con mayúsculas, incondicionado, que no precisa de la existencia del objeto amado para existir.</p>
+
+  <div class="psico-box">
+    <div class="psico-header"><span>📓</span><span class="label">Diario del Psiconauta</span></div>
+    <p class="psico-q">¿Reconocés el amor con mayúsculas? ¿Recordás alguna vivencia en la que has experimentado esa dimensión? Citá tres manifestaciones que diferencian el AMOR con mayúsculas de otros tipos de amor.</p>
+    <textarea id="amor_mayusculas" rows="5" placeholder="1. ...\n2. ...\n3. ..."></textarea>
+  </div>
+
+  <div class="quote">
+    <p>"La mejor manera de relacionarse con los demás es pensar en qué se les puede ayudar."</p>
+    <span>— Ramayat</span>
+  </div>
+
+  <p><strong>"Amarás a tu prójimo como a ti mismo"</strong> es un mensaje histórico que, dentro de su potente sencillez, estimula la mente del hombre a preguntarse cómo está nuestro nivel de autoestima; y seguidamente, cuando se está en compañía de alguien: ¿en qué puedo beneficiar ahora a esta persona?</p>
+
+  <div class="psico-box">
+    <div class="psico-header"><span>📓</span><span class="label">Diario del Psiconauta</span></div>
+    <p class="psico-q">Escribí unas líneas sobre lo que significa para ti el amor a uno mismo.</p>
+    <textarea id="amor_mismo" rows="4" placeholder="¿Qué es para vos amarte a vos misma?"></textarea>
+  </div>
+
+  <!-- Los 4 niveles védicos -->
+  <div class="niveles-vedicos">
+    <h3>🕯️ Los 4 niveles védicos de relación</h3>
+    <p style="font-size:13px;color:#6B5E58;font-style:italic;margin-bottom:14px">Las antiguas escrituras védicas de la India describen cuatro niveles en las relaciones con los demás. Tocá el que más te identifica hoy:</p>
+    <div class="nivel-option" onclick="selectNivel(1, this)">
+      <div class="nivel-num">1</div>
+      <p style="margin:0;font-size:14px">Cuando nos relacionamos para obtener.</p>
+    </div>
+    <div class="nivel-option" onclick="selectNivel(2, this)">
+      <div class="nivel-num">2</div>
+      <p style="margin:0;font-size:14px">Cuando nos relacionamos para dar y recibir.</p>
+    </div>
+    <div class="nivel-option" onclick="selectNivel(3, this)">
+      <div class="nivel-num">3</div>
+      <p style="margin:0;font-size:14px">Cuando nos relacionamos para dar, pero nos alegramos de ello.</p>
+    </div>
+    <div class="nivel-option" onclick="selectNivel(4, this)">
+      <div class="nivel-num">4</div>
+      <p style="margin:0;font-size:14px">Cuando nos relacionamos en el Dar, de manera natural y neutral, como lo hace la luz del sol a todas las cosas.</p>
+    </div>
+  </div>
+
+  <div class="psico-box">
+    <div class="psico-header"><span>📓</span><span class="label">Diario del Psiconauta</span></div>
+    <p class="psico-q">¿Con qué nivel te identificás? En etapas anteriores ¿te relacionabas desde otro nivel?</p>
+    <textarea id="nivel_vedico" rows="3" placeholder="Reflexioná sobre tu evolución en el dar..."></textarea>
+  </div>
+
+  <div class="psico-box">
+    <div class="psico-header"><span>📓</span><span class="label">Diario del Psiconauta</span></div>
+    <p class="psico-q">Citá alguna experiencia en la que hayas vivenciado la llegada de los frutos inesperados de tu siembra anterior.</p>
+    <textarea id="frutos" rows="4" placeholder="¿Cuándo diste sin esperar y recibiste de donde menos lo esperabas?"></textarea>
+  </div>
+
+  <div class="quote">
+    <p>"El que no cree en los milagros, no es realista."</p>
+    <span>— David Ben-Gurión</span>
+  </div>
+
+  <p class="copyright">© José María Doria · Escuela Española de Desarrollo Transpersonal (EDT)</p>
+  <div class="btns">
+    <button class="btn-save" onclick="guardar()">Guardar mis reflexiones</button>
+    <button class="btn-dl" onclick="descargar()">Descargar mis reflexiones 📄</button>
+  </div>
+</div>
+<script>
+function descargarPagina(){ const a=document.createElement('a'); a.href=URL.createObjectURL(new Blob([document.documentElement.outerHTML],{type:'text/html'})); a.download='dia32_la_contribucion.html'; a.click(); }
+
+let nivelSeleccionado = 0;
+function selectNivel(n, el){
+  document.querySelectorAll('.nivel-option').forEach(o=>o.classList.remove('selected'));
+  el.classList.add('selected');
+  nivelSeleccionado = n;
+  updateProgress();
+}
+
+const CAMPOS=['sinergia','amor_mayusculas','amor_mismo','nivel_vedico','frutos'];
+function updateProgress(){
+  const f = CAMPOS.filter(id=>document.getElementById(id)?.value.trim()).length + (nivelSeleccionado?1:0);
+  document.getElementById('progressFill').style.width=Math.round((f/(CAMPOS.length+1))*100)+'%';
+}
+CAMPOS.forEach(id=>document.getElementById(id)?.addEventListener('input',updateProgress));
+
+function guardar(){
+  const data = Object.fromEntries(CAMPOS.map(id=>[id,document.getElementById(id)?.value||'']));
+  data.nivel_vedico_seleccionado = nivelSeleccionado;
+  localStorage.setItem('dia32_resp',JSON.stringify(data));
+  const b=document.querySelector('.btn-save'); b.textContent='✓ Guardado'; setTimeout(()=>b.textContent='Guardar mis reflexiones',2000);
+}
+
+function descargar(){
+  const NIVELES = ['','Para obtener','Para dar y recibir','Para dar y alegrarse','Para dar de manera natural y neutral'];
+  const lines=['MIS RESPUESTAS — DÍA 32','40 Días de Atención Sostenida','─────────────────────────────────────────','','NOTA: Este documento contiene únicamente tus reflexiones personales.','El contenido de la lección permanece en la plataforma.','','─────────────────────────────────────────','',
+    '▸ La Ley de la Sinergia en mi vida', document.getElementById('sinergia')?.value||'','',
+    '▸ El AMOR con mayúsculas', document.getElementById('amor_mayusculas')?.value||'','',
+    '▸ El amor a uno mismo', document.getElementById('amor_mismo')?.value||'','',
+    `▸ Nivel védico con el que me identifico hoy`, nivelSeleccionado ? `Nivel ${nivelSeleccionado}: ${NIVELES[nivelSeleccionado]}` : '(sin seleccionar)','',
+    '▸ Reflexión sobre mi nivel védico', document.getElementById('nivel_vedico')?.value||'','',
+    '▸ Frutos inesperados de mi siembra', document.getElementById('frutos')?.value||'',
+  ];
+  const a=document.createElement('a'); a.href=URL.createObjectURL(new Blob([lines.join('\n')],{type:'text/plain'})); a.download='reflexiones_dia32.txt'; a.click();
+}
+
+try{
+  const s=JSON.parse(localStorage.getItem('dia32_resp')||'{}');
+  CAMPOS.forEach(id=>{if(s[id])document.getElementById(id).value=s[id];});
+  if(s.nivel_vedico_seleccionado){ nivelSeleccionado=s.nivel_vedico_seleccionado; document.querySelectorAll('.nivel-option')[nivelSeleccionado-1]?.classList.add('selected'); }
+  updateProgress();
+}catch(e){}
+</script>
+</body>
+</html>

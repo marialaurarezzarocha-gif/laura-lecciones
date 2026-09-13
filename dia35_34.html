@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Días 35-34 — El Amor y las Relaciones</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: Georgia, serif; background: #F7F2EA; color: #2C2420; min-height: 100vh; }
+  .header { background: linear-gradient(160deg, #3A2050 0%, #5C3D7A 100%); padding: 2rem 1.5rem; }
+  .header p.tag { font-family: sans-serif; font-size: 11px; letter-spacing: 3px; color: #C9B8E0; text-transform: uppercase; margin-bottom: 4px; }
+  .header p.sub2 { font-family: sans-serif; font-size: 12px; color: #D4B896; text-transform: uppercase; letter-spacing: 2px; margin-bottom: 8px; }
+  .header h1 { font-size: 24px; font-weight: 400; color: #fff; margin-bottom: 16px; }
+  .day-tabs { display: flex; gap: 8px; margin-bottom: 16px; }
+  .day-tab { padding: 4px 14px; border-radius: 20px; border: 1.5px solid rgba(255,255,255,0.5); background: rgba(255,255,255,0.1); color: #fff; font-size: 13px; cursor: default; font-family: sans-serif; }
+  .day-tab.active { border-color: #fff; background: rgba(255,255,255,0.25); }
+  .progress-bar { background: rgba(255,255,255,0.15); border-radius: 2px; height: 4px; }
+  .progress-fill { background: #A67C52; height: 100%; border-radius: 2px; width: 0%; transition: width 0.4s; }
+  .content { padding: 1.5rem; max-width: 660px; margin: 0 auto; }
+  p { font-size: 15px; line-height: 2; margin-bottom: 16px; }
+  .key-block { background: #EDE6F5; border-radius: 12px; padding: 16px 20px; margin: 20px 0; }
+  .key-block p { font-style: italic; color: #3A2050; margin: 0; line-height: 1.8; }
+  .quote { text-align: center; padding: 20px; margin: 20px 0; }
+  .quote p { font-style: italic; color: #5C3D7A; font-size: 16px; margin-bottom: 6px; line-height: 1.8; }
+  .quote span { font-size: 13px; color: #6B5E58; font-family: sans-serif; }
+  .nivel-card { border-radius: 12px; padding: 1.25rem 1.5rem; margin-bottom: 16px; }
+  .nivel-num { font-family: sans-serif; font-weight: 700; font-size: 11px; text-transform: uppercase; letter-spacing: 1.5px; margin-bottom: 6px; }
+  .nivel-title { font-size: 17px; font-weight: 400; margin-bottom: 10px; }
+  .poem-block { background: #EDE6F5; border-radius: 12px; padding: 1.5rem; margin: 20px 0; text-align: center; }
+  .poem-block p { font-style: italic; color: #3A2050; line-height: 2; margin-bottom: 4px; }
+  .story-block { background: #FFFCF8; border-left: 3px solid #A67C52; border-radius: 0 10px 10px 0; padding: 14px 18px; margin: 16px 0; }
+  .psico-box { border: 1.5px solid #A67C52; border-radius: 12px; padding: 18px 20px; margin: 24px 0; background: #F9F3EB; }
+  .psico-header { display: flex; align-items: center; gap: 8px; margin-bottom: 10px; }
+  .psico-header span.label { font-family: sans-serif; font-size: 11px; font-weight: 700; color: #A67C52; letter-spacing: 1.5px; text-transform: uppercase; }
+  .psico-q { font-style: italic; color: #6B4E2A; font-size: 15px; line-height: 1.7; margin-bottom: 12px; }
+  .reflex-section { background: #FFFCF8; border-radius: 12px; padding: 1.5rem; margin-bottom: 8px; border: 0.5px solid #E0D8CC; }
+  .reflex-title { font-family: sans-serif; font-weight: 700; font-size: 12px; color: #5C3D7A; letter-spacing: 1.5px; text-transform: uppercase; margin-bottom: 16px; }
+  .reflex-item { margin-bottom: 14px; }
+  .reflex-item p { font-style: italic; color: #6B4E2A; font-size: 14px; line-height: 1.7; margin-bottom: 6px; }
+  textarea { width: 100%; padding: 10px 12px; border-radius: 8px; border: 1px solid #E0D8CC; background: #FFFCF8; color: #2C2420; font-size: 14px; line-height: 1.8; resize: vertical; font-family: Georgia, serif; outline: none; }
+  .section-divider { border: none; border-top: 0.5px solid #E0D8CC; margin: 28px 0; }
+  .section-label { font-family: sans-serif; font-weight: 700; font-size: 11px; color: #A05060; letter-spacing: 2px; text-transform: uppercase; margin-bottom: 16px; }
+  .btns { display: flex; gap: 10px; margin-top: 8px; }
+  .btn-save { flex: 2; padding: 13px 0; background: #5C3D7A; color: #fff; border: none; border-radius: 10px; font-size: 15px; font-weight: 600; cursor: pointer; font-family: sans-serif; }
+  .btn-dl { flex: 1; padding: 13px 0; background: #FFFCF8; color: #2C2420; border: 1px solid #E0D8CC; border-radius: 10px; font-size: 14px; cursor: pointer; font-family: sans-serif; }
+  .btn-download-page { display: block; width: 100%; padding: 13px 0; background: #3A2050; color: #fff; border: none; border-radius: 10px; font-size: 15px; font-weight: 600; cursor: pointer; font-family: sans-serif; margin-bottom: 10px; text-align: center; }
+  .copyright { font-family: sans-serif; font-size: 12px; color: #6B5E58; text-align: center; margin: 24px 0; }
+</style>
+</head>
+<body>
+<div class="header">
+  <div class="day-tabs">
+    <span class="day-tab active">Día 35</span>
+    <span class="day-tab active">Día 34</span>
+    <span style="font-size:12px;color:rgba(255,255,255,0.6);align-self:center;font-family:sans-serif">· Lección de fin de semana</span>
+  </div>
+  <p class="sub2">Relaciones Sanas y Conscientes</p>
+  <h1>El Amor y las Relaciones</h1>
+  <div class="progress-bar"><div class="progress-fill" id="progressFill"></div></div>
+</div>
+
+<div class="content">
+
+  <p>En este tercer milenio, no sólo enfrentamos retos sociales y tecnológicos de gran complejidad, sino también la lección emocional que traen implícitas las relaciones interpersonales y, más concretamente, las de pareja.</p>
+
+  <p>El alto número de conflictos de relación lleva implícita la necesidad de tomar consciencia de los <strong>"patrones emocionales"</strong> que parecemos traer puestos de nuestra familia de origen. La llamada "apertura del corazón" no es un tema cualquiera — cuando nuestro corazón se abre y vivimos en la "coherencia cardíaca", tendemos a vivir la relación en complicidad profunda.</p>
+
+  <div class="psico-box">
+    <div class="psico-header"><span>📓</span><span class="label">Diario del Psiconauta</span></div>
+    <p class="psico-q">Describí tu manera de concebir la relación de pareja en su dimensión más sana y consciente.</p>
+    <textarea id="pareja_consciente" rows="4" placeholder="¿Qué es para vos una relación verdaderamente sana?"></textarea>
+  </div>
+
+  <div class="key-block"><p>"El que tiene un problema con el otro, en realidad lo tiene consigo mismo." La autoindagación conlleva todo un proceso de expansión de consciencia — no es atinado hacer único responsable al otro de nuestros estados emocionales, ni tampoco hacernos responsables de los estados ajenos.</p></div>
+
+  <div class="psico-box">
+    <div class="psico-header"><span>📓</span><span class="label">Diario del Psiconauta</span></div>
+    <p class="psico-q">Anotá los tres aspectos que más te atraían de tu pareja en la primera etapa de vuestra relación. ¿Has observado si tales aspectos son precisamente los que más tienden a irritarte con el paso del tiempo?</p>
+    <textarea id="tres_aspectos" rows="4" placeholder="1. ...\n2. ...\n3. ..."></textarea>
+  </div>
+
+  <div class="psico-box">
+    <div class="psico-header"><span>📓</span><span class="label">Diario del Psiconauta</span></div>
+    <p class="psico-q">¿Describí el área de tu persona que más conflicto ha traído a tus relaciones.</p>
+    <textarea id="area_conflicto" rows="3" placeholder="Observá sin juzgar — toda sombra reconocida es una puerta hacia la luz..."></textarea>
+  </div>
+
+  <hr class="section-divider">
+  <p class="section-label">❤️ Dependencias emocionales — los 5 niveles</p>
+
+  <div class="nivel-card" style="background:#FBF5EF;border:0.5px solid rgba(139,94,60,0.2)">
+    <p class="nivel-num" style="color:#8B5E3C">Primer nivel</p>
+    <p class="nivel-title" style="color:#8B5E3C;font-weight:600">Dependencia</p>
+    <p style="margin:0">El ejemplo más diáfano: un niño que al nacer depende de su madre. A veces también se da en el amor típico del adolescente que se apasiona al proyectar su deseo sobre alguien a quien idealiza y ni siquiera conoce.</p>
+  </div>
+
+  <div class="nivel-card" style="background:#F8F0F6;border:0.5px solid rgba(122,74,107,0.2)">
+    <p class="nivel-num" style="color:#7A4A6B">Segundo nivel</p>
+    <p class="nivel-title" style="color:#7A4A6B;font-weight:600">Codependencia</p>
+    <p style="margin:0 0 10px">"Dos palomas atadas por una pata suman cuatro alas, pero no pueden volar." Se desenvuelve entre vaivenes como el goce y el sufrimiento, el deseo y la rabia. La codependencia se basa en que uno "necesita al otro" — <em>"Te quiero porque te necesito"</em>, en vez de <em>"Te necesito porque te quiero"</em>.</p>
+    <p style="margin:0;font-style:italic;color:#7A4A6B;border-top:0.5px solid rgba(122,74,107,0.2);padding-top:10px">Antídoto: "Cariño, no te necesito para ser feliz — la felicidad es un asunto de mi propia responsabilidad. Sin embargo te elijo para cultivarla y compartirla."</p>
+  </div>
+
+  <div class="nivel-card" style="background:#EFF7F4;border:0.5px solid rgba(61,107,90,0.2)">
+    <p class="nivel-num" style="color:#3D6B5A">Tercer nivel</p>
+    <p class="nivel-title" style="color:#3D6B5A;font-weight:600">Independencia</p>
+    <p style="margin:0">Personas poseedoras de autonomía psicoemocional que no necesitan negarse a sí mismas para satisfacer las expectativas de los demás. Se saben completas y auto-referenciadas. No esperan que les den "peces" — se saben poseedoras de una "caña de pescar".</p>
+  </div>
+
+  <div class="nivel-card" style="background:#EFF2F9;border:0.5px solid rgba(74,94,139,0.2)">
+    <p class="nivel-num" style="color:#4A5E8B">Cuarto nivel</p>
+    <p class="nivel-title" style="color:#4A5E8B;font-weight:600">Co-Independencia</p>
+    <p style="margin:0">Relación basada en "dos independientes unidos" — la imagen de dos naranjas enteras que desde su autonomía se unen en multiplicadora sinergia. Ya no se siente <em>"Te quiero porque te necesito"</em>, sino <em>"Te elijo cada día porque siento amor contigo"</em>.</p>
+  </div>
+
+  <div class="nivel-card" style="background:#EDE6F5;border:0.5px solid rgba(92,61,122,0.2)">
+    <p class="nivel-num" style="color:#5C3D7A">Quinto nivel</p>
+    <p class="nivel-title" style="color:#5C3D7A;font-weight:600">Interindependencia</p>
+    <p style="margin:0">El "supranivel" — una Red de Relaciones que se activan cuando la consciencia se enfoca en un presente continuo. Seres despiertos que han logrado mantener el enfoque de la atención de forma sostenida. Se sienten integrados en una comunidad mayor: la familia humana.</p>
+  </div>
+
+  <div class="psico-box">
+    <div class="psico-header"><span>📓</span><span class="label">Diario del Psiconauta</span></div>
+    <p class="psico-q">¿Reconocés el patrón de codependencia en tu biografía de relaciones? Enumerá las características o situaciones más relevantes en las que se ha manifestado.</p>
+    <textarea id="codependencia" rows="4" placeholder="Observá con compasión y sin juicio..."></textarea>
+  </div>
+
+  <div class="psico-box">
+    <div class="psico-header"><span>📓</span><span class="label">Diario del Psiconauta</span></div>
+    <p class="psico-q">¿Mantenés alguna relación co-independiente? Transcribí los aspectos más saludables que experimentás con ella y que fundamentan vuestro mutuo respeto.</p>
+    <textarea id="relacion_sana" rows="3" placeholder="¿Qué aspectos de esta relación te nutren y te hacen crecer?"></textarea>
+  </div>
+
+  <hr class="section-divider">
+  <p class="section-label">🌹 El Amor y la Pasión — Relato de Sabiduría Milenaria</p>
+
+  <p>En un lejano reino se encontraba una princesa que se sentía locamente enamorada de un apuesto capitán de su guardia y no tenía ningún otro deseo que casarse con él. Su padre, que tenía fama de sabio, le dijo: <em>"El amor, a diferencia de la pasión, es también voluntad y renuncia, y así como se expande y se recrea en las alegrías, así también profundiza y se adentra a través de las penas."</em></p>
+
+  <p>El Rey decidió someter a prueba su amor: <em>"Hija mía, voy a encerrarte con él durante 40 días y 40 noches en una lujosa cámara. Si al finalizar este período seguís queriéndoos casar, te daré mi consentimiento."</em></p>
+
+  <p>Todo discurrió armoniosamente durante los primeros días, en los que los amantes no cesaban de saciar sus deseos. Pero tras la excitación inicial, no tardaron en presentarse las dudas y contradicciones — que se convirtieron en rutina y aburrimiento. A las tres semanas la princesa aporreaba la puerta queriendo salir.</p>
+
+  <p>Al tiempo, cuando la princesa recobró la serenidad, dijo a su padre: <em>"Háblame del matrimonio, Padre."</em></p>
+
+  <div class="poem-block">
+    <p>"Nacisteis juntos y juntos para siempre.</p>
+    <p>Pero, dejad que en vuestra unión crezcan los espacios.</p>
+    <p>Amaos el uno al otro, mas no hagáis del amor una prisión.</p>
+    <p>Llenaos mutuamente las copas, pero no bebáis de la misma.</p>
+    <p>Compartid vuestro pan, mas no comáis del mismo trozo.</p>
+    <p>Y permaneced juntos, mas no demasiado juntos.</p>
+    <p>Porque ni el roble ni el ciprés crecen uno a la sombra del otro."</p>
+  </div>
+
+  <div class="quote">
+    <p>"La pasión es buscar la felicidad en el otro, mientras que el amor busca la felicidad del otro."</p>
+    <span>— Kahlil Gibran</span>
+  </div>
+
+  <div class="psico-box">
+    <div class="psico-header"><span>📓</span><span class="label">Diario del Psiconauta</span></div>
+    <p class="psico-q">Autoindagación: describí tu manera de concebir las relaciones de amor en su forma más evolucionada y consciente.</p>
+    <textarea id="amor_consciente" rows="4" placeholder="¿Qué es para vos amar con mayúsculas?"></textarea>
+  </div>
+
+  <div class="psico-box">
+    <div class="psico-header"><span>📓</span><span class="label">Diario del Psiconauta</span></div>
+    <p class="psico-q">¿Has vivenciado la diferencia entre soledad y aislamiento en alguna época de tu vida?</p>
+    <textarea id="soledad" rows="3" placeholder="La soledad acompañada, como la del Sol con Alfa Centauro a cuatro millones de años luz..."></textarea>
+  </div>
+
+  <p class="copyright">© José María Doria · Escuela Española de Desarrollo Transpersonal (EDT)</p>
+
+  <div class="btns">
+    <button class="btn-save" onclick="guardar()">Guardar mis reflexiones</button>
+    <button class="btn-dl" onclick="descargar()">Descargar mis reflexiones 📄</button>
+  </div>
+</div>
+
+<script>
+function descargarPagina(){ const a=document.createElement('a'); a.href=URL.createObjectURL(new Blob([document.documentElement.outerHTML],{type:'text/html'})); a.download='dias35-34_amor_relaciones.html'; a.click(); }
+
+const CAMPOS=['pareja_consciente','tres_aspectos','area_conflicto','codependencia','relacion_sana','amor_consciente','soledad'];
+function updateProgress(){ const f=CAMPOS.filter(id=>document.getElementById(id)?.value.trim()).length; document.getElementById('progressFill').style.width=Math.round((f/CAMPOS.length)*100)+'%'; }
+CAMPOS.forEach(id=>document.getElementById(id)?.addEventListener('input',updateProgress));
+
+function guardar(){
+  localStorage.setItem('dia3534_resp',JSON.stringify(Object.fromEntries(CAMPOS.map(id=>[id,document.getElementById(id)?.value||'']))));
+  const b=document.querySelector('.btn-save'); b.textContent='✓ Guardado'; setTimeout(()=>b.textContent='Guardar mis reflexiones',2000);
+}
+
+function descargar(){
+  const labels={'pareja_consciente':'Mi concepción de la relación sana','tres_aspectos':'Tres aspectos que atraían y hoy irritan','area_conflicto':'Área que más conflicto ha traído','codependencia':'Patrón de codependencia en mi historia','relacion_sana':'Aspectos saludables de relación co-independiente','amor_consciente':'El amor en su forma más evolucionada','soledad':'Soledad vs aislamiento'};
+  const lines=['MIS RESPUESTAS — DÍAS 35-34','40 Días de Atención Sostenida','─────────────────────────────────────────','','NOTA: Este documento contiene únicamente tus reflexiones personales.','El contenido de la lección permanece en la plataforma.','','─────────────────────────────────────────','',...CAMPOS.flatMap(id=>[`▸ ${labels[id]}`,document.getElementById(id)?.value||'(sin completar)',''])];
+  const a=document.createElement('a'); a.href=URL.createObjectURL(new Blob([lines.join('\n')],{type:'text/plain'})); a.download='reflexiones_dias35-34.txt'; a.click();
+}
+
+try{ const s=JSON.parse(localStorage.getItem('dia3534_resp')||'{}'); CAMPOS.forEach(id=>{if(s[id])document.getElementById(id).value=s[id];}); updateProgress(); }catch(e){}
+</script>
+</body>
+</html>

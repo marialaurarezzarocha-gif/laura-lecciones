@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Día 37 — El Verdadero Guerrero</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: Georgia, serif; background: #F7F2EA; color: #2C2420; min-height: 100vh; }
+  .header { background: linear-gradient(160deg, #3A2050 0%, #5C3D7A 100%); padding: 2rem 1.5rem; }
+  .header p.tag { font-family: sans-serif; font-size: 11px; letter-spacing: 3px; color: #C9B8E0; text-transform: uppercase; margin-bottom: 4px; }
+  .header p.sub2 { font-family: sans-serif; font-size: 12px; letter-spacing: 2px; color: #D4B896; text-transform: uppercase; margin-bottom: 8px; }
+  .header h1 { font-size: 24px; font-weight: 400; color: #fff; margin-bottom: 16px; }
+  .progress-bar { background: rgba(255,255,255,0.15); border-radius: 2px; height: 4px; }
+  .progress-fill { background: #A67C52; height: 100%; border-radius: 2px; width: 0%; transition: width 0.4s; }
+  .content { padding: 1.5rem; max-width: 660px; margin: 0 auto; }
+  p { font-size: 15px; line-height: 2; margin-bottom: 16px; }
+  .capitular { float: left; font-size: 90px; line-height: 0.8; color: #A67C52; margin-right: 16px; margin-top: 8px; opacity: 0.85; }
+  .clearfix::after { content:""; display:table; clear:both; }
+  .dialogo { margin: 14px 0; }
+  .dialogo .autor { font-size: 12px; font-family: sans-serif; color: #6B5E58; margin-bottom: 3px; font-style: italic; }
+  .dialogo .texto { font-style: italic; font-weight: 600; color: #A67C52; font-size: 15px; line-height: 1.7; }
+  .divider { border: none; border-top: 0.5px solid #E0D8CC; margin: 24px 0; }
+  .reveal-block { background: #EDE6F5; border-radius: 12px; padding: 1.5rem; margin: 24px 0; text-align: center; border: 0.5px solid rgba(92,61,122,0.2); }
+  .reveal-block p { font-size: 18px; font-weight: 700; color: #3A2050; letter-spacing: 1px; line-height: 1.6; margin-bottom: 12px; }
+  .reveal-block p.sub { font-size: 14px; font-weight: 400; font-style: italic; color: #5C3D7A; }
+  .psico-box { border: 1.5px solid #A67C52; border-radius: 12px; padding: 18px 20px; margin: 24px 0; background: #F9F3EB; }
+  .psico-header { display: flex; align-items: center; gap: 8px; margin-bottom: 10px; }
+  .psico-header span.label { font-family: sans-serif; font-size: 11px; font-weight: 700; color: #A67C52; letter-spacing: 1.5px; text-transform: uppercase; }
+  .psico-q { font-style: italic; color: #6B4E2A; font-size: 15px; line-height: 1.7; margin-bottom: 12px; }
+  .reflex-section { background: #FFFCF8; border-radius: 12px; padding: 1.5rem; margin-bottom: 8px; border: 0.5px solid #E0D8CC; }
+  .reflex-title { font-family: sans-serif; font-weight: 700; font-size: 12px; color: #5C3D7A; letter-spacing: 1.5px; text-transform: uppercase; margin-bottom: 16px; }
+  .reflex-item { margin-bottom: 14px; }
+  .reflex-item p { font-style: italic; color: #6B4E2A; font-size: 14px; line-height: 1.7; margin-bottom: 6px; }
+  .dia-hoy { background: #EDE6F5; border-radius: 12px; padding: 1.5rem; margin: 24px 0; }
+  .dia-hoy-title { font-family: sans-serif; font-weight: 700; font-size: 12px; color: #5C3D7A; letter-spacing: 1.5px; text-transform: uppercase; margin-bottom: 12px; }
+  textarea { width: 100%; padding: 10px 12px; border-radius: 8px; border: 1px solid #E0D8CC; background: #FFFCF8; color: #2C2420; font-size: 14px; line-height: 1.8; resize: vertical; font-family: Georgia, serif; outline: none; }
+  .btns { display: flex; gap: 10px; margin-top: 16px; }
+  .btn-save { flex: 2; padding: 13px 0; background: #5C3D7A; color: #fff; border: none; border-radius: 10px; font-size: 15px; font-weight: 600; cursor: pointer; font-family: sans-serif; }
+  .btn-dl { flex: 1; padding: 13px 0; background: #FFFCF8; color: #2C2420; border: 1px solid #E0D8CC; border-radius: 10px; font-size: 14px; cursor: pointer; font-family: sans-serif; }
+  .copyright { font-family: sans-serif; font-size: 12px; color: #6B5E58; text-align: center; margin: 24px 0; }
+  .btn-download-page { display: block; width: 100%; padding: 13px 0; background: #3A2050; color: #fff; border: none; border-radius: 10px; font-size: 15px; font-weight: 600; cursor: pointer; font-family: sans-serif; margin-bottom: 10px; }
+</style>
+</head>
+<body>
+<div class="header">
+  <p class="tag">Día 37 de la cuenta atrás</p>
+  <p class="sub2">Cuentos de Sabiduría Milenaria · Patrimonio Ético de la Humanidad</p>
+  <h1>El Verdadero Guerrero</h1>
+  <div class="progress-bar"><div class="progress-fill" id="progressFill"></div></div>
+</div>
+<div class="content">
+  <div class="clearfix">
+    <span class="capitular">S</span>
+    <p>atoor era un verdadero campeón de las artes marciales de su escuela, pero aún a pesar de su destreza, sabía que todavía no conocía plenamente las artes marciales que él en su corazón presentía. También intuía que carecía de algo importante, algo que quizá tenía que ver con la conciencia despierta.</p>
+  </div>
+  <p>Llegó el día en que decidió dirigirse a un lugar en las montañas donde se hallaba un conocido maestro de nombre Budham, que aunque no era el más famoso, Satoor presentía que era el único capaz de transmitir y despertar lo que en tantas ocasiones atrás había percibido.</p>
+  <p>Cuando se presentó ante las puertas del monasterio, Budham escuchó a Satoor acerca de su deseo y le dijo:</p>
+  <div class="dialogo"><p class="autor">Budham:</p><p class="texto">"No estás preparado, no sabes de paciencia, no debo sembrar la semilla en una tierra insuficientemente trabajada."</p></div>
+  <div class="dialogo"><p class="autor">Satoor:</p><p class="texto">"Pero, maestro, haré lo que me pidas. Vengo desde muy lejos y he llegado aquí tan sólo con el deseo de aprender los secretos milenarios de la flexibilidad y de la fuerza."</p></div>
+  <div class="dialogo"><p class="autor">Budham:</p><p class="texto">"No sirves. Eres caprichoso y tu mente está llena de espejismos y pasiones. No sabes aguantar tus deseos y, además, eres un inmaduro para los frutos del alma. Así que, lárgate."</p></div>
+  <p>Satoor se sentía decepcionado, pero seguía percibiendo que allí, tras aquellas puertas, se enseñaba aquello que siempre había presentido; por lo que decidió sentarse y esperar pacientemente junto a la puerta. Pasaron tres días y tres noches, en los que Satoor se mantuvo en el umbral sin comer y sin beber.</p>
+  <div class="dialogo"><p class="autor">Satoor:</p><p class="texto">"Pero maestro, juro por mis padres que obedeceré sin rechistar lo que me ordenes, por difícil que esto me parezca."</p></div>
+  <div class="dialogo"><p class="autor">Budham:</p><p class="texto">"¿Prometes obedecer sin rechistar lo que aquí se te ordene durante un período ininterrumpido de 3 años?"</p></div>
+  <div class="dialogo"><p class="autor">Satoor:</p><p class="texto">"Sí, sí; lo juro, lo juro."</p></div>
+  <p>El maestro abrió la puerta y Satoor cruzó el umbral.</p>
+  <hr class="divider">
+  <p>Cuando transcurrió el primer año, Satoor seguía haciendo las labores más básicas de la cocina y de la limpieza de aquel enorme lugar, y todavía no había pisado una plataforma de instrucción. Pensaba para sus adentros: <span style="font-style:italic;color:#3A2050">"El Maestro debe estar probándome. Seguro que de un momento a otro comenzará mi enseñanza."</span></p>
+  <p>Al segundo año seguía sirviendo en la casa y a veces se decía: <span style="font-style:italic;color:#3A2050">"No sé, creo que he caído en manos de un sinvergüenza que me explota. Maldita promesa que le hice."</span></p>
+  <p>Ya cerca de los tres años, Satoor se encontraba tan adaptado que ya ni recordaba lo que había venido buscando. Aquella tarde, aparentemente como las demás, Budham apareció blandiendo un palo y, sin venir a cuento, le asestó un formidable golpe en la espalda.</p>
+  <p>Satoor se dio cuenta de que si quería salvar su vida tenía que guardar una obsesiva alerta. Poco a poco, tanto en las noches como en los días, Satoor presentía las llegadas furtivas de Budham. Vivía en un estado acrecentado de atención.</p>
+  <p>Y así, día a día..., expiró el plazo que había jurado mantener. Fue entonces cuando Budham, de manera insólitamente amable y con un brillo de lucidez y complicidad en sus ojos, le dijo:</p>
+  <div class="reveal-block">
+    <p>"Bien, mi querido Satoor. Has finalizado ya tu aprendizaje y estás preparado para enfrentar los tres peores enemigos del guerrero interior:</p>
+    <p>EL VICTIMISMO, LA DESATENCIÓN Y LA IMPACIENCIA</p>
+    <p class="sub">"Lo que aquí has aprendido,<br>de hoy en adelante lo enseñarás sobre la Tierra."</p>
+  </div>
+
+  <div class="psico-box">
+    <div class="psico-header"><span>📓</span><span class="label">Diario del Psiconauta</span></div>
+    <p class="psico-q">Y ahora, ¿qué enseñanza de este cuento toca tu corazón?</p>
+    <textarea id="ensenanza" rows="4" placeholder="Dejate brotar libremente..."></textarea>
+  </div>
+
+  <div class="reflex-section">
+    <p class="reflex-title">✦ Reflexiones para sentir</p>
+    <div class="reflex-item"><p>¿Has sentido alguna vez la necesidad de encontrar un camino de aprendizaje y sentido de la vida que de verdad te transmitiese algo más profundo?</p><textarea id="ref0" rows="2" placeholder="Tu reflexión..."></textarea></div>
+    <div class="reflex-item"><p>¿Te has visto alguna vez en la tesitura de «tirar la toalla» ante la dificultad y disciplina que requería un aprendizaje?</p><textarea id="ref1" rows="2" placeholder="Tu reflexión..."></textarea></div>
+    <div class="reflex-item"><p>¿Qué te enseñó aquella situación de resistencia y aparente esterilidad?</p><textarea id="ref2" rows="2" placeholder="Tu reflexión..."></textarea></div>
+    <div class="reflex-item"><p>¿Qué cualidades entendés que has desarrollado en las situaciones en las que te has visto en el «compromiso de seguir», sin resultados inmediatos?</p><textarea id="ref3" rows="2" placeholder="Tu reflexión..."></textarea></div>
+    <div class="reflex-item"><p>¿Pensás que el victimismo, la desatención y la impaciencia son enemigos que ya has vencido?</p><textarea id="ref4" rows="2" placeholder="Tu reflexión..."></textarea></div>
+    <div class="reflex-item"><p>¿Qué cambios tendrías que hacer en tu vida actual para afirmar tu victoria sobre estos tres enemigos de tu éxito?</p><textarea id="ref5" rows="2" placeholder="Tu reflexión..."></textarea></div>
+  </div>
+
+  <div class="dia-hoy">
+    <p class="dia-hoy-title">En el día de hoy</p>
+    <div class="psico-box" style="margin:0">
+      <div class="psico-header"><span>📓</span><span class="label">Diario del Psiconauta</span></div>
+      <p class="psico-q">Observá si en tu entorno se toman «atajos» para evitar la incomodidad del aprendizaje. Observá si hay momentos del día en que te ves saboteada por alguno de los tres enemigos: el victimismo, la desatención y la impaciencia.</p>
+      <textarea id="dia_hoy" rows="3" placeholder="¿Qué observás en vos hoy?"></textarea>
+    </div>
+  </div>
+
+  <p class="copyright">© José María Doria · Escuela Española de Desarrollo Transpersonal (EDT)</p>
+  <div class="btns">
+    <button class="btn-save" onclick="guardar()">Guardar mis reflexiones</button>
+    <button class="btn-dl" onclick="descargar()">Descargar mis reflexiones 📄</button>
+  </div>
+</div>
+<script>
+function descargarPagina(){ const a=document.createElement('a'); a.href=URL.createObjectURL(new Blob([document.documentElement.outerHTML],{type:'text/html'})); a.download='dia37_verdadero_guerrero.html'; a.click(); }
+
+const CAMPOS = ['ensenanza','ref0','ref1','ref2','ref3','ref4','ref5','dia_hoy'];
+function updateProgress(){ const f=CAMPOS.filter(id=>document.getElementById(id)?.value.trim()).length; document.getElementById('progressFill').style.width=Math.round((f/CAMPOS.length)*100)+'%'; }
+CAMPOS.forEach(id=>document.getElementById(id)?.addEventListener('input',updateProgress));
+function guardar(){ localStorage.setItem('dia37_resp',JSON.stringify(Object.fromEntries(CAMPOS.map(id=>[id,document.getElementById(id)?.value||''])))); const b=document.querySelector('.btn-save'); b.textContent='✓ Guardado'; setTimeout(()=>b.textContent='Guardar mis reflexiones',2000); }
+function descargar(){ const lines=['MIS RESPUESTAS — DÍA 37','40 Días de Atención Sostenida','─────────────────────────────────────────','','NOTA: Este documento contiene únicamente tus reflexiones personales.','El contenido de la lección permanece en la plataforma.','','─────────────────────────────────────────','', ...CAMPOS.flatMap(id=>[`▸ ${id}`,document.getElementById(id)?.value||'(sin completar)',''])]; const a=document.createElement('a'); a.href=URL.createObjectURL(new Blob([lines.join('\n')],{type:'text/plain'})); a.download='reflexiones_dia37.txt'; a.click(); }
+try{ const s=JSON.parse(localStorage.getItem('dia37_resp')||'{}'); CAMPOS.forEach(id=>{if(s[id])document.getElementById(id).value=s[id];}); updateProgress(); }catch(e){}
+</script>
+</body>
+</html>

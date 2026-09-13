@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Día 33 — El Sanador</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: Georgia, serif; background: #F7F2EA; color: #2C2420; min-height: 100vh; }
+  .header { background: linear-gradient(160deg, #3A2050 0%, #5C3D7A 100%); padding: 2rem 1.5rem; }
+  .header p.tag { font-family: sans-serif; font-size: 11px; letter-spacing: 3px; color: #C9B8E0; text-transform: uppercase; margin-bottom: 4px; }
+  .header p.sub2 { font-family: sans-serif; font-size: 12px; color: #D4B896; text-transform: uppercase; letter-spacing: 2px; margin-bottom: 8px; }
+  .header h1 { font-size: 24px; font-weight: 400; color: #fff; margin-bottom: 16px; }
+  .progress-bar { background: rgba(255,255,255,0.15); border-radius: 2px; height: 4px; }
+  .progress-fill { background: #A67C52; height: 100%; border-radius: 2px; width: 0%; transition: width 0.4s; }
+  .content { padding: 1.5rem; max-width: 660px; margin: 0 auto; }
+  p { font-size: 15px; line-height: 2; margin-bottom: 16px; }
+  .capitular { float: left; font-size: 90px; line-height: 0.8; color: #A67C52; margin-right: 16px; margin-top: 8px; opacity: 0.85; }
+  .clearfix::after { content:""; display:table; clear:both; }
+  .dialogo { margin: 14px 0; }
+  .dialogo .autor { font-size: 12px; font-family: sans-serif; color: #6B5E58; margin-bottom: 3px; font-style: italic; }
+  .dialogo .texto { font-style: italic; font-weight: 600; color: #A67C52; font-size: 15px; line-height: 1.7; }
+  .reveal-block { background: #EDE6F5; border-radius: 12px; padding: 2rem; margin: 28px 0; text-align: center; }
+  .reveal-block p { font-size: 22px; font-weight: 700; color: #3A2050; letter-spacing: 2px; line-height: 1.5; margin: 0; }
+  .psico-box { border: 1.5px solid #A67C52; border-radius: 12px; padding: 18px 20px; margin: 24px 0; background: #F9F3EB; }
+  .psico-header { display: flex; align-items: center; gap: 8px; margin-bottom: 10px; }
+  .psico-header span.label { font-family: sans-serif; font-size: 11px; font-weight: 700; color: #A67C52; letter-spacing: 1.5px; text-transform: uppercase; }
+  .psico-q { font-style: italic; color: #6B4E2A; font-size: 15px; line-height: 1.7; margin-bottom: 12px; }
+  .reflex-section { background: #FFFCF8; border-radius: 12px; padding: 1.5rem; margin-bottom: 8px; border: 0.5px solid #E0D8CC; }
+  .reflex-title { font-family: sans-serif; font-weight: 700; font-size: 12px; color: #5C3D7A; letter-spacing: 1.5px; text-transform: uppercase; margin-bottom: 16px; }
+  .reflex-item { margin-bottom: 14px; }
+  .reflex-item p { font-style: italic; color: #6B4E2A; font-size: 14px; line-height: 1.7; margin-bottom: 6px; }
+  .dia-hoy { background: #EDE6F5; border-radius: 12px; padding: 1.5rem; margin: 24px 0; }
+  .dia-hoy-title { font-family: sans-serif; font-weight: 700; font-size: 12px; color: #5C3D7A; letter-spacing: 1.5px; text-transform: uppercase; margin-bottom: 12px; }
+  textarea { width: 100%; padding: 10px 12px; border-radius: 8px; border: 1px solid #E0D8CC; background: #FFFCF8; color: #2C2420; font-size: 14px; line-height: 1.8; resize: vertical; font-family: Georgia, serif; outline: none; }
+  .btn-download-page { display: block; width: 100%; padding: 13px 0; background: #3A2050; color: #fff; border: none; border-radius: 10px; font-size: 15px; font-weight: 600; cursor: pointer; font-family: sans-serif; margin-bottom: 10px; text-align: center; }
+  .btns { display: flex; gap: 10px; }
+  .btn-save { flex: 2; padding: 13px 0; background: #5C3D7A; color: #fff; border: none; border-radius: 10px; font-size: 15px; font-weight: 600; cursor: pointer; font-family: sans-serif; }
+  .btn-dl { flex: 1; padding: 13px 0; background: #FFFCF8; color: #2C2420; border: 1px solid #E0D8CC; border-radius: 10px; font-size: 14px; cursor: pointer; font-family: sans-serif; }
+  .copyright { font-family: sans-serif; font-size: 12px; color: #6B5E58; text-align: center; margin: 24px 0; }
+</style>
+</head>
+<body>
+<div class="header">
+  <p class="tag">Día 33 de la cuenta atrás</p>
+  <p class="sub2">Cuentos de Sabiduría Milenaria · Patrimonio Ético de la Humanidad</p>
+  <h1>El Sanador</h1>
+  <div class="progress-bar"><div class="progress-fill" id="progressFill"></div></div>
+</div>
+<div class="content">
+  <div class="clearfix">
+    <span class="capitular">H</span>
+    <p>ace muchos años, en un lejano desierto se escondía un poblado de pequeñas construcciones junto a pozos de agua, en donde se reflejaban las palmeras. Al fondo, podía verse una cabaña que, a pesar de su sencillez, impregnaba todo su entorno de una atmósfera sagrada. Se decía que cuantos por allí pasaban, se sentían embriagados por una inexplicable mezcla de paz y silencio interior, que transformaba sus rostros y sus almas.</p>
+  </div>
+  <p>Un buen día, una mujer llevó de la mano a su hijo ante el Maestro. Con gesto parsimonioso, semejante al de un devoto ante la entrada de un templo, acicaló al muchacho, intentando hacerle digno ante la presencia de su morador. Tres velas encendidas iluminaban tenuemente la imponente figura del habitante de la cabaña: ¡El Maestro!</p>
+  <div class="dialogo"><p class="autor">La madre:</p><p class="texto">"Maestro, he traído a mi hijo para que le digas que no coma azúcar. El médico ya se lo ha dicho muchas veces, y él nunca ha sido capaz de hacerle caso. Creo que está obsesionado, su vida peligra, y se sabe que tienes un poderoso secreto por el que cuando algo aconsejáis vuestro corazón llega muy dentro. Por favor, Maestro, te pido que le digas a mi hijo que no coma azúcar."</p></div>
+  <p>El Maestro, tras observar con atención lo que allí estaba sucediendo, le contestó:</p>
+  <div class="dialogo"><p class="autor">El Maestro:</p><p class="texto">"Mujer, vuelve dentro de tres días y tres noches."</p></div>
+  <p>Ella, tras asentir con una inclinación de cabeza, se retiró en silencio, íntimamente regocijada.</p>
+  <p>Pasados los tres días y las tres noches, la mujer y el hijo volvieron a recorrer la larga distancia que los separaba de la casa del Maestro. Pareciera no haber pasado el tiempo. La mujer, rompiendo el silencio, dijo:</p>
+  <div class="dialogo"><p class="autor">La madre:</p><p class="texto">"Han pasado tres días y tres noches, y aquí estamos."</p></div>
+  <p>A lo que Él, dirigiendo su mirada al chico, le respondió con naturalidad:</p>
+  <div class="dialogo"><p class="autor">El Maestro:</p><p class="texto">"Muchacho: debes cesar de comer azúcar; no es buena para Ti."</p></div>
+  <p>Tras un profundo silencio entre los dos, el muchacho, reflejando una intensa emoción, contestó impresionado:</p>
+  <div class="dialogo"><p class="autor">El muchacho:</p><p class="texto">"Así será... Gracias por ser mi Maestro."</p></div>
+  <p>La madre, no pudiendo reprimir una cierta curiosidad por la brevedad y sencillez de lo que allí había sucedido, interpeló al Maestro:</p>
+  <div class="dialogo"><p class="autor">La madre:</p><p class="texto">"Pero, ¿eso es todo? No puedo comprender por qué me has hecho venir otra vez hasta acá, y no me ayudasteis entonces diciendo a mi hijo lo que hoy le has pronunciado."</p></div>
+  <p>El Maestro, mirando con amor y comprensión a los ojos de ella, le dijo:</p>
+  <div class="reveal-block"><p>"Mujer: LLEVO TRES DÍAS Y TRES NOCHES SIN COMER AZÚCAR"</p></div>
+
+  <div class="psico-box">
+    <div class="psico-header"><span>📓</span><span class="label">Diario del Psiconauta</span></div>
+    <p class="psico-q">Y ahora, ¿qué enseñanza de este cuento toca tu corazón?</p>
+    <textarea id="ensenanza" rows="4" placeholder="Dejate brotar libremente..."></textarea>
+  </div>
+
+  <div class="reflex-section">
+    <p class="reflex-title">✦ Reflexiones para sentir</p>
+    <div class="reflex-item"><p>¿Cuál pensás que es la razón por la que el sabio espera tres días para decirle al joven simplemente que «no coma azúcar»?</p><textarea id="ref0" rows="2" placeholder="Tu reflexión..."></textarea></div>
+    <div class="reflex-item"><p>¿Te has observado alguna vez dando recomendaciones y consejos que vos no habías «experimentado» y trabajado previamente?</p><textarea id="ref1" rows="2" placeholder="Tu reflexión..."></textarea></div>
+    <div class="reflex-item"><p>¿Te suena un modelo de autoridad en el que prima: «Haz lo que te digo, no lo que hago»? ¿Te has visto involucrada en alguna situación así?</p><textarea id="ref2" rows="2" placeholder="Tu reflexión..."></textarea></div>
+    <div class="reflex-item"><p>¿Pensás que la mera teoría sin experiencia no «llega» dentro, ni convence de verdad?</p><textarea id="ref3" rows="2" placeholder="Tu reflexión..."></textarea></div>
+    <div class="reflex-item"><p>¿Has observado en qué suele radicar la verdadera autoridad que algunas personas poseen?</p><textarea id="ref4" rows="2" placeholder="Tu reflexión..."></textarea></div>
+    <div class="reflex-item"><p>¿Con qué autoridad moral y grado de convicción una persona que fuma puede ordenar a su hijo que no fume?</p><textarea id="ref5" rows="2" placeholder="Tu reflexión..."></textarea></div>
+    <div class="reflex-item"><p>¿Qué medidas estás dispuesta a tomar para apoyar vivencialmente los argumentos que empleás para convencer a los demás de lo que aconsejás?</p><textarea id="ref6" rows="2" placeholder="Tu reflexión..."></textarea></div>
+  </div>
+
+  <div class="dia-hoy">
+    <p class="dia-hoy-title">En el día de hoy</p>
+    <div class="psico-box" style="margin:0">
+      <div class="psico-header"><span>📓</span><span class="label">Diario del Psiconauta</span></div>
+      <p class="psico-q">Observá tus reacciones ante los problemas de los demás. Observá si sos de las que manejan teorías o experiencias al «pasar» a otros tu aprendizaje. Permanecé en atención al escenario de tu jornada, y observá si en tu entorno se reproduce alguna situación de los matices del relato del Sanador.</p>
+      <textarea id="dia_hoy" rows="3" placeholder="¿Qué observás en vos hoy?"></textarea>
+    </div>
+  </div>
+
+  <p class="copyright">© José María Doria · Escuela Española de Desarrollo Transpersonal (EDT)</p>
+  <div class="btns">
+    <button class="btn-save" onclick="guardar()">Guardar mis reflexiones</button>
+    <button class="btn-dl" onclick="descargar()">Descargar mis reflexiones 📄</button>
+  </div>
+</div>
+<script>
+function descargarPagina(){ const a=document.createElement('a'); a.href=URL.createObjectURL(new Blob([document.documentElement.outerHTML],{type:'text/html'})); a.download='dia33_el_sanador.html'; a.click(); }
+const CAMPOS=['ensenanza','ref0','ref1','ref2','ref3','ref4','ref5','ref6','dia_hoy'];
+function updateProgress(){ const f=CAMPOS.filter(id=>document.getElementById(id)?.value.trim()).length; document.getElementById('progressFill').style.width=Math.round((f/CAMPOS.length)*100)+'%'; }
+CAMPOS.forEach(id=>document.getElementById(id)?.addEventListener('input',updateProgress));
+function guardar(){ localStorage.setItem('dia33_resp',JSON.stringify(Object.fromEntries(CAMPOS.map(id=>[id,document.getElementById(id)?.value||''])))); const b=document.querySelector('.btn-save'); b.textContent='✓ Guardado'; setTimeout(()=>b.textContent='Guardar mis reflexiones',2000); }
+function descargar(){ const lines=['MIS RESPUESTAS — DÍA 33','40 Días de Atención Sostenida','─────────────────────────────────────────','','NOTA: Este documento contiene únicamente tus reflexiones personales.','El contenido de la lección permanece en la plataforma.','','─────────────────────────────────────────','',...CAMPOS.flatMap(id=>[`▸ ${id}`,document.getElementById(id)?.value||'(sin completar)',''])]; const a=document.createElement('a'); a.href=URL.createObjectURL(new Blob([lines.join('\n')],{type:'text/plain'})); a.download='reflexiones_dia33.txt'; a.click(); }
+try{ const s=JSON.parse(localStorage.getItem('dia33_resp')||'{}'); CAMPOS.forEach(id=>{if(s[id])document.getElementById(id).value=s[id];}); updateProgress(); }catch(e){}
+</script>
+</body>
+</html>

@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Día 36 — Nuestros Sueños en Metas</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: Georgia, serif; background: #F7F2EA; color: #2C2420; min-height: 100vh; }
+  .header { background: linear-gradient(160deg, #3A2050 0%, #5C3D7A 100%); padding: 2rem 1.5rem; }
+  .header p.tag { font-family: sans-serif; font-size: 11px; letter-spacing: 3px; color: #C9B8E0; text-transform: uppercase; margin-bottom: 4px; }
+  .header p.sub2 { font-family: sans-serif; font-size: 12px; letter-spacing: 2px; color: #D4B896; text-transform: uppercase; margin-bottom: 8px; }
+  .header h1 { font-size: 20px; font-weight: 400; color: #fff; margin-bottom: 4px; }
+  .header p.sub { font-size: 15px; color: #C9B8E0; font-style: italic; margin-bottom: 16px; }
+  .progress-bar { background: rgba(255,255,255,0.15); border-radius: 2px; height: 4px; }
+  .progress-fill { background: #A67C52; height: 100%; border-radius: 2px; width: 0%; transition: width 0.4s; }
+  .content { padding: 1.5rem; max-width: 660px; margin: 0 auto; }
+  p { font-size: 15px; line-height: 2; margin-bottom: 16px; }
+  .key-block { background: #EDE6F5; border-radius: 12px; padding: 16px 20px; margin: 20px 0; }
+  .key-block p { font-style: italic; color: #3A2050; margin: 0; line-height: 1.8; }
+  .quote { text-align: center; padding: 20px; margin: 20px 0; }
+  .quote p { font-style: italic; color: #5C3D7A; font-size: 16px; margin-bottom: 6px; line-height: 1.8; }
+  .quote span { font-size: 13px; color: #6B5E58; font-family: sans-serif; }
+  .def-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin: 20px 0; }
+  .def-card { background: #FFFCF8; border-radius: 10px; padding: 1rem; border: 0.5px solid #E0D8CC; }
+  .def-card h3 { font-family: sans-serif; font-weight: 700; font-size: 13px; color: #5C3D7A; margin-bottom: 8px; letter-spacing: 1px; }
+  .def-card p { font-size: 13px; line-height: 1.8; color: #2C2420; margin: 0; }
+  .psico-box { border: 1.5px solid #A67C52; border-radius: 12px; padding: 18px 20px; margin: 24px 0; background: #F9F3EB; }
+  .psico-header { display: flex; align-items: center; gap: 8px; margin-bottom: 10px; }
+  .psico-header span.label { font-family: sans-serif; font-size: 11px; font-weight: 700; color: #A67C52; letter-spacing: 1.5px; text-transform: uppercase; }
+  .psico-q { font-style: italic; color: #6B4E2A; font-size: 15px; line-height: 1.7; margin-bottom: 12px; }
+  .area-item { margin-bottom: 18px; }
+  .area-header { display: flex; align-items: center; gap: 8px; margin-bottom: 6px; }
+  .area-emoji { font-size: 20px; }
+  .area-title { font-family: sans-serif; font-weight: 700; font-size: 14px; color: #3A2050; }
+  .area-hint { font-style: italic; color: #6B5E58; font-size: 13px; line-height: 1.7; margin-bottom: 6px; }
+  textarea { width: 100%; padding: 10px 12px; border-radius: 8px; border: 1px solid #E0D8CC; background: #FFFCF8; color: #2C2420; font-size: 14px; line-height: 1.8; resize: vertical; font-family: Georgia, serif; outline: none; margin-bottom: 4px; }
+  .highlight { color: #5C3D7A; font-weight: 600; }
+  .btns { display: flex; gap: 10px; margin-top: 16px; }
+  .btn-save { flex: 2; padding: 13px 0; background: #5C3D7A; color: #fff; border: none; border-radius: 10px; font-size: 15px; font-weight: 600; cursor: pointer; font-family: sans-serif; }
+  .btn-dl { flex: 1; padding: 13px 0; background: #FFFCF8; color: #2C2420; border: 1px solid #E0D8CC; border-radius: 10px; font-size: 14px; cursor: pointer; font-family: sans-serif; }
+  .copyright { font-family: sans-serif; font-size: 12px; color: #6B5E58; text-align: center; margin: 24px 0; }
+  .btn-download-page { display: block; width: 100%; padding: 13px 0; background: #3A2050; color: #fff; border: none; border-radius: 10px; font-size: 15px; font-weight: 600; cursor: pointer; font-family: sans-serif; margin-bottom: 10px; }
+  @media(max-width:500px){ .def-grid{ grid-template-columns:1fr; } }
+</style>
+</head>
+<body>
+<div class="header">
+  <p class="tag">Día 36 de la cuenta atrás</p>
+  <p class="sub2">Tecnología de la Transformación</p>
+  <h1>La Importancia de Convertir</h1>
+  <p class="sub">Nuestros Sueños en Metas</p>
+  <div class="progress-bar"><div class="progress-fill" id="progressFill"></div></div>
+</div>
+<div class="content">
+
+  <p>¿Sabés al día de hoy en qué tipo de persona te has convertido? Ni más ni menos que en <span class="highlight">lo que imaginaste algún día ser</span>.</p>
+
+  <div class="key-block"><p>Somos lo que somos, porque primero lo hemos imaginado.</p></div>
+
+  <p>Einstein decía que <strong>es más importante la imaginación que el conocimiento</strong>. El antiguo modo de pensar decía "ver para creer". El nuevo: <span class="highlight">"creer para ver"</span> (si no lo creo, no lo veo).</p>
+
+  <p>En el día de hoy te disponés a vivir unos momentos muy emocionantes, ya que vas a conectar con esa parte de tu ser que "sueña" e imagina. Permití que afloren muchas aspiraciones, unas olvidadas y otras recreadas y renovadas.</p>
+
+  <div class="psico-box">
+    <div class="psico-header"><span>📓</span><span class="label">Diario del Psiconauta</span></div>
+    <p class="psico-q">¿Qué sentido tiene mi vida? ¿En qué soy realmente útil y feliz?</p>
+    <p style="font-size:13px;color:#6B5E58;font-style:italic;margin-bottom:10px">Es muy posible que te asombrés de no saberlo. Dejate brotar sin censura.</p>
+    <textarea id="sentido_vida" rows="4" placeholder="Escribí libremente, sin juzgarte..."></textarea>
+  </div>
+
+  <p>¡¡¡ <span class="highlight">Saltá el abismo de tus referencias acerca de lo que es posible</span> !!! No te limités por lo que creés que es realizable. Si alguien al leer tus sueños te dijese que estás un poco loca, tal reacción determinaría que has realizado correctamente tu ejercicio.</p>
+
+  <div class="def-grid">
+    <div class="def-card"><h3>OBJETIVO</h3><p>Aquello que da sentido y significado a nuestra existencia. Relacionado con el propósito y misión. Subyace como finalidad bajo todos los cambios y ciclos de nuestra vida.</p></div>
+    <div class="def-card"><h3>META</h3><p>Las diferentes etapas que recorremos para alcanzar el objetivo — los escalones que ascendemos progresivamente. Las metas tienen fechas de consecución y apoyan el objetivo central.</p></div>
+  </div>
+
+  <div class="psico-box">
+    <div class="psico-header"><span>📓</span><span class="label">Diario del Psiconauta · El gran ejercicio</span></div>
+    <p class="psico-q">Para realizar este ejercicio, conviene que te sientas como un Rey Mago que puede hacer realidad todos sus sueños. Dejá a tu mente vagar y jugar.</p>
+
+    <div class="area-item">
+      <div class="area-header"><span class="area-emoji">🌱</span><span class="area-title">1. Desarrollo personal</span></div>
+      <p class="area-hint">¿Qué deseás alcanzar de tu persona? ¿Qué cualidades quisieras poseer? ¿Qué características físicas, emocionales y mentales quisieras incorporar? ¿Qué habilidades y virtudes? ¿Qué logros desearías alcanzar en el área de tus relaciones personales?</p>
+      <textarea id="area1" rows="4" placeholder="Mis sueños en desarrollo personal..."></textarea>
+    </div>
+
+    <div class="area-item">
+      <div class="area-header"><span class="area-emoji">💼</span><span class="area-title">2. Trabajo y finanzas</span></div>
+      <p class="area-hint">¿En qué te gustaría trabajar? ¿Cómo te gustaría que fuese tu trabajo? ¿Cuánto te gustaría ganar? ¿En qué actividad te sentís más feliz?</p>
+      <textarea id="area2" rows="4" placeholder="Mis sueños en trabajo y finanzas..."></textarea>
+    </div>
+
+    <div class="area-item">
+      <div class="area-header"><span class="area-emoji">✨</span><span class="area-title">3. Regalos y aventuras</span></div>
+      <p class="area-hint">¿Qué te gustaría vivir? ¿Qué tipo de satisfacciones te gustaría tener? ¿Qué vivencias te proporcionan gozo? ¿Viajes, relaciones, deportes, juegos, creación, contemplación...?</p>
+      <textarea id="area3" rows="4" placeholder="Mis sueños y aventuras..."></textarea>
+    </div>
+
+    <div class="area-item">
+      <div class="area-header"><span class="area-emoji">🤲</span><span class="area-title">4. Contribución a los demás</span></div>
+      <p class="area-hint">¿Cuál es el sentido de tu vida? ¿En qué medida te gustaría sentirte útil a los demás? ¿Qué metas espirituales animan tu vida? ¿Hacia qué nivel de consciencia te gustaría evolucionar?</p>
+      <textarea id="area4" rows="4" placeholder="Mi contribución y metas espirituales..."></textarea>
+    </div>
+
+    <div style="margin-top:12px">
+      <p style="font-family:sans-serif;font-weight:700;font-size:13px;color:#6B4E2A;margin-bottom:6px">📅 Fechas en que me propongo alcanzar mis metas</p>
+      <textarea id="fechas" rows="2" placeholder="Un viaje de mil kilómetros empieza por un paso. Poné fechas concretas..."></textarea>
+    </div>
+  </div>
+
+  <div class="psico-box">
+    <div class="psico-header"><span>📓</span><span class="label">Diario del Psiconauta</span></div>
+    <p class="psico-q">¿Qué parece ahora impedirme alcanzar las cosas que quiero? ¿Qué debo hacer para conseguir lo que quiero?</p>
+    <textarea id="impedimentos" rows="4" placeholder="Sé honesta y concreta..."></textarea>
+  </div>
+
+  <div class="psico-box">
+    <div class="psico-header"><span>📓</span><span class="label">Diario del Psiconauta</span></div>
+    <p class="psico-q">Definí en pocas palabras las cualidades y comportamientos de personas que hayan conseguido lo que deseás. Interiorizate e imaginá que cada una de ellas te da un consejo para el logro de tus objetivos.</p>
+    <textarea id="modelos" rows="5" placeholder="Nombre, cualidades que admiro, consejo que me daría..."></textarea>
+  </div>
+
+  <div class="quote">
+    <p>"No hay nada como ensoñar para crear futuro, ya que lo que hoy es utopía será carne y sangre mañana."</p>
+    <span>— Julio Verne</span>
+  </div>
+
+  <div class="quote">
+    <p>"En lo referente a todos los actos de iniciativa y creación, hay una verdad elemental: es el momento en que uno se compromete definitivamente. Luego, la Providencia también se mueve."</p>
+    <span>— Goethe</span>
+  </div>
+
+  <p class="copyright">© José María Doria · Escuela Española de Desarrollo Transpersonal (EDT)</p>
+  <div class="btns">
+    <button class="btn-save" onclick="guardar()">Guardar mis reflexiones</button>
+    <button class="btn-dl" onclick="descargar()">Descargar mis reflexiones 📄</button>
+  </div>
+</div>
+<script>
+function descargarPagina(){ const a=document.createElement('a'); a.href=URL.createObjectURL(new Blob([document.documentElement.outerHTML],{type:'text/html'})); a.download='dia36_suenos_en_metas.html'; a.click(); }
+
+const CAMPOS = ['sentido_vida','area1','area2','area3','area4','fechas','impedimentos','modelos'];
+function updateProgress(){ const f=CAMPOS.filter(id=>document.getElementById(id)?.value.trim()).length; document.getElementById('progressFill').style.width=Math.round((f/CAMPOS.length)*100)+'%'; }
+CAMPOS.forEach(id=>document.getElementById(id)?.addEventListener('input',updateProgress));
+function guardar(){ localStorage.setItem('dia36_resp',JSON.stringify(Object.fromEntries(CAMPOS.map(id=>[id,document.getElementById(id)?.value||''])))); const b=document.querySelector('.btn-save'); b.textContent='✓ Guardado'; setTimeout(()=>b.textContent='Guardar mis reflexiones',2000); }
+function descargar(){ const labels={'sentido_vida':'Sentido de mi vida','area1':'Desarrollo personal','area2':'Trabajo y finanzas','area3':'Regalos y aventuras','area4':'Contribución a los demás','fechas':'Fechas de mis metas','impedimentos':'¿Qué me impide?','modelos':'Personas modelo'}; const lines=['MIS RESPUESTAS — DÍA 36','40 Días de Atención Sostenida','─────────────────────────────────────────','','NOTA: Este documento contiene únicamente tus reflexiones personales.','El contenido de la lección permanece en la plataforma.','','─────────────────────────────────────────','',...CAMPOS.flatMap(id=>[`▸ ${labels[id]||id}`,document.getElementById(id)?.value||'(sin completar)',''])]; const a=document.createElement('a'); a.href=URL.createObjectURL(new Blob([lines.join('\n')],{type:'text/plain'})); a.download='reflexiones_dia36.txt'; a.click(); }
+try{ const s=JSON.parse(localStorage.getItem('dia36_resp')||'{}'); CAMPOS.forEach(id=>{if(s[id])document.getElementById(id).value=s[id];}); updateProgress(); }catch(e){}
+</script>
+</body>
+</html>

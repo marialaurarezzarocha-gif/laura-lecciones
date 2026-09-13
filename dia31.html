@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Día 31 — El Anillo</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: Georgia, serif; background: #F7F2EA; color: #2C2420; min-height: 100vh; }
+  .header { background: linear-gradient(160deg, #3A2050 0%, #5C3D7A 100%); padding: 2rem 1.5rem; }
+  .header p.tag { font-family: sans-serif; font-size: 11px; letter-spacing: 3px; color: #C9B8E0; text-transform: uppercase; margin-bottom: 4px; }
+  .header p.sub2 { font-family: sans-serif; font-size: 12px; color: #D4B896; text-transform: uppercase; letter-spacing: 2px; margin-bottom: 8px; }
+  .header h1 { font-size: 24px; font-weight: 400; color: #fff; margin-bottom: 16px; }
+  .progress-bar { background: rgba(255,255,255,0.15); border-radius: 2px; height: 4px; }
+  .progress-fill { background: #A67C52; height: 100%; border-radius: 2px; width: 0%; transition: width 0.4s; }
+  .content { padding: 1.5rem; max-width: 660px; margin: 0 auto; }
+  p { font-size: 15px; line-height: 2; margin-bottom: 16px; }
+  .capitular { float: left; font-size: 90px; line-height: 0.8; color: #A67C52; margin-right: 16px; margin-top: 8px; opacity: 0.85; }
+  .clearfix::after { content:""; display:table; clear:both; }
+  .dialogo { margin: 14px 0; }
+  .dialogo .autor { font-size: 12px; font-family: sans-serif; color: #6B5E58; margin-bottom: 3px; font-style: italic; }
+  .dialogo .texto { font-style: italic; font-weight: 600; color: #A67C52; font-size: 15px; line-height: 1.7; }
+  .proclama { background: #FFFCF8; border-left: 3px solid #A67C52; border-radius: 0 10px 10px 0; padding: 16px 20px; margin: 20px 0; text-align: center; }
+  .proclama p { font-style: italic; color: #6B4E2A; font-size: 15px; line-height: 1.9; margin: 0; }
+  .reveal-block { background: #EDE6F5; border-radius: 12px; padding: 2rem; margin: 28px 0; text-align: center; }
+  .reveal-block p { font-size: 28px; font-weight: 400; color: #5C3D7A; letter-spacing: 3px; line-height: 1.5; margin: 0; font-family: Georgia, serif; }
+  .psico-box { border: 1.5px solid #A67C52; border-radius: 12px; padding: 18px 20px; margin: 24px 0; background: #F9F3EB; }
+  .psico-header { display: flex; align-items: center; gap: 8px; margin-bottom: 10px; }
+  .psico-header span.label { font-family: sans-serif; font-size: 11px; font-weight: 700; color: #A67C52; letter-spacing: 1.5px; text-transform: uppercase; }
+  .psico-q { font-style: italic; color: #6B4E2A; font-size: 15px; line-height: 1.7; margin-bottom: 12px; }
+  .reflex-section { background: #FFFCF8; border-radius: 12px; padding: 1.5rem; margin-bottom: 8px; border: 0.5px solid #E0D8CC; }
+  .reflex-title { font-family: sans-serif; font-weight: 700; font-size: 12px; color: #5C3D7A; letter-spacing: 1.5px; text-transform: uppercase; margin-bottom: 16px; }
+  .reflex-item { margin-bottom: 14px; }
+  .reflex-item p { font-style: italic; color: #6B4E2A; font-size: 14px; line-height: 1.7; margin-bottom: 6px; }
+  .dia-hoy { background: #EDE6F5; border-radius: 12px; padding: 1.5rem; margin: 24px 0; }
+  .dia-hoy-title { font-family: sans-serif; font-weight: 700; font-size: 12px; color: #5C3D7A; letter-spacing: 1.5px; text-transform: uppercase; margin-bottom: 12px; }
+  textarea { width: 100%; padding: 10px 12px; border-radius: 8px; border: 1px solid #E0D8CC; background: #FFFCF8; color: #2C2420; font-size: 14px; line-height: 1.8; resize: vertical; font-family: Georgia, serif; outline: none; }
+  .btn-download-page { display: block; width: 100%; padding: 13px 0; background: #3A2050; color: #fff; border: none; border-radius: 10px; font-size: 15px; font-weight: 600; cursor: pointer; font-family: sans-serif; margin-bottom: 10px; text-align: center; }
+  .btns { display: flex; gap: 10px; }
+  .btn-save { flex: 2; padding: 13px 0; background: #5C3D7A; color: #fff; border: none; border-radius: 10px; font-size: 15px; font-weight: 600; cursor: pointer; font-family: sans-serif; }
+  .btn-dl { flex: 1; padding: 13px 0; background: #FFFCF8; color: #2C2420; border: 1px solid #E0D8CC; border-radius: 10px; font-size: 14px; cursor: pointer; font-family: sans-serif; }
+  .copyright { font-family: sans-serif; font-size: 12px; color: #6B5E58; text-align: center; margin: 24px 0; }
+</style>
+</head>
+<body>
+<div class="header">
+  <p class="tag">Día 31 de la cuenta atrás</p>
+  <p class="sub2">Cuentos de Sabiduría Milenaria · Patrimonio Ético de la Humanidad</p>
+  <h1>El Anillo</h1>
+  <div class="progress-bar"><div class="progress-fill" id="progressFill"></div></div>
+</div>
+<div class="content">
+  <div class="clearfix">
+    <span class="capitular">S</span>
+    <p>obre la colina de un lejano reino se hallaba un castillo de cúpulas doradas, donde el Rey ejercía su labor y administraba la comarca. Poseía fama de justo y se le reconocía tanta generosidad como grandeza. Sin embargo, todos sabían que tenía un secreto: el rey padecía de una profunda tristeza, porque no lograba poseer la llave de la paz perfecta.</p>
+  </div>
+  <p>Su reino, a lo largo de los años, o bien sufría grandes sequías o disfrutaba de generosas cosechas. Y aunque el rey sabía y conocía este cíclico vaivén, no podía evitar la amargura de las sequías ni la exaltación de las riquezas. El Monarca mantenía en el fondo de su corazón una obstinada búsqueda: <strong>la búsqueda de la estabilidad perfecta</strong>.</p>
+  <p>Tras 144 amaneceres, los emisarios del reino, desplegando sus pergaminos, leyeron solemnemente:</p>
+  <div class="proclama">
+    <p>"Su majestad, el rey, invita a todo su pueblo a construir un anillo para el dedo real; no obstante, éste será un anillo tan especial que deberá poseer en su misma forma aquello que haga precisamente recordar a su portador la moderación en los tiempos de poder y grandeza, así como la confianza y la esperanza en los tiempos de escasez y nieblas espesas. De esta forma, su majestad alcanzará un equilibrio tal, que está dispuesto a ceder a cambio la totalidad de su reino."</p>
+  </div>
+  <p>Los mensajeros, partiendo a galope por los ocho senderos de la rosa de los vientos, despertaban a su paso el genio creador de magos y artistas. Pasó el tiempo, mientras diferentes orfebres presentaban esperanzados al rey cada uno de los anillos mágicos por ellos realizados. Pero nadie conseguía aportar a su Majestad el recordatorio que necesitaba.</p>
+  <p>Un día, se presentó en la corte un caminante con porte de guerrero, alma de sacerdote y palabra de mago. Pronto se supo que el llegado portaba el anillo que solicitaba su majestad.</p>
+  <div class="dialogo"><p class="autor">El caminante:</p><p class="texto">"Majestad, he construido el anillo que podréis mirar en los momentos de máxima intensidad, tanto de pena como de gloria y que, sin duda, os ayudará a recordar lo que deseáis. Tomad."</p></div>
+  <p>El rey tomó el pequeño objeto envuelto en terciopelo púrpura. Al contemplarlo, su rostro se iluminó y sonrió complacido. Exclamó sereno a todos los presentes:</p>
+  <div class="dialogo"><p class="autor">El Rey:</p><p class="texto">"El rey ha encontrado la clave que estaba buscando. El rey ha comprendido el secreto de las eternas mutaciones. El rey cede su reino visible, porque está preparado para emprender el Camino sin sentirse afectado por los vaivenes y ciclos del mismo."</p></div>
+  <p>El Rey, mostrándolo finalmente a los presentes, dijo: <em>"Como veis, es un anillo aparentemente como todos; sin embargo, en su interior figura una escondida inscripción que lo hace único y mágico."</em> "¿Cuál es?", preguntaron inquietos los presentes. <em>"Muy simple"</em>, dijo el rey: <em>"El anillo tiene grabadas tres palabras tan cargadas de significado que ya nunca podré olvidar cuando lleguen buenas o malas nuevas. Estas tres palabras son:"</em></p>
+
+  <div class="reveal-block"><p>ESTO TAMBIÉN PASARÁ</p></div>
+
+  <div class="psico-box">
+    <div class="psico-header"><span>📓</span><span class="label">Diario del Psiconauta</span></div>
+    <p class="psico-q">Y ahora, ¿qué enseñanza de este cuento toca tu corazón?</p>
+    <textarea id="ensenanza" rows="4" placeholder="Dejate brotar libremente..."></textarea>
+  </div>
+
+  <div class="reflex-section">
+    <p class="reflex-title">✦ Reflexiones para sentir</p>
+    <div class="reflex-item"><p>¿Pensás que hay algún estado mental que pueda detenerse y conseguir permanecer? ¿O el Universo está en constante cambio y nos encontramos en un flujo dinámico y permanentemente creador?</p><textarea id="ref0" rows="2" placeholder="Tu reflexión..."></textarea></div>
+    <div class="reflex-item"><p>¿De qué sirve conocer la Ley de la Impermanencia de los fenómenos?</p><textarea id="ref1" rows="2" placeholder="Tu reflexión..."></textarea></div>
+    <div class="reflex-item"><p>Saber en los momentos malos que también pasarán, como pasan las tormentas en el mar, ¿te ha ayudado a aceptar y aliviar? Y la transitoriedad de las exaltaciones, ¿te facilita el desapego y la confianza?</p><textarea id="ref2" rows="2" placeholder="Tu reflexión..."></textarea></div>
+    <div class="reflex-item"><p>Cuando has observado la superficie del mar, ¿te has percatado de que nunca está ni estará igual? ¿Pensás que esto pasa con todo, incluidos nuestros llamados defectos y limitaciones?</p><textarea id="ref3" rows="2" placeholder="Tu reflexión..."></textarea></div>
+    <div class="reflex-item"><p>¿Has observado cómo en el mar, a simplemente dos metros de profundidad, la agitación y el cambio vertiginoso dejan de existir? ¿Existe algo que nunca cambie? ¿Acaso dentro de uno mismo, en lo más hondo, descubrimos lo Uno, lo Absoluto?</p><textarea id="ref4" rows="2" placeholder="Tu reflexión..."></textarea></div>
+    <div class="reflex-item"><p>Cuando te sentís en el Observador Conciencia-Testigo y «te das cuenta» de los cambios constantes del yo-personalidad, ¿pensás que es la capacidad de observación y darte cuenta lo único que nunca cambia? ¿Es eso Espíritu?</p><textarea id="ref5" rows="2" placeholder="Tu reflexión..."></textarea></div>
+  </div>
+
+  <div class="dia-hoy">
+    <p class="dia-hoy-title">En el día de hoy</p>
+    <div class="psico-box" style="margin:0">
+      <div class="psico-header"><span>📓</span><span class="label">Diario del Psiconauta</span></div>
+      <p class="psico-q">Permanecé en atención a la transitoriedad de tus estados emocionales y la de los que te rodean. Comprobá la inmutabilidad e inafectabilidad de tu consciencia en la observación sostenida.</p>
+      <textarea id="dia_hoy" rows="3" placeholder="¿Qué observás hoy sobre el cambio y la impermanencia?"></textarea>
+    </div>
+  </div>
+
+  <p class="copyright">© José María Doria · Escuela Española de Desarrollo Transpersonal (EDT)</p>
+  <div class="btns">
+    <button class="btn-save" onclick="guardar()">Guardar mis reflexiones</button>
+    <button class="btn-dl" onclick="descargar()">Descargar mis reflexiones 📄</button>
+  </div>
+</div>
+<script>
+function descargarPagina(){ const a=document.createElement('a'); a.href=URL.createObjectURL(new Blob([document.documentElement.outerHTML],{type:'text/html'})); a.download='dia31_el_anillo.html'; a.click(); }
+const CAMPOS=['ensenanza','ref0','ref1','ref2','ref3','ref4','ref5','dia_hoy'];
+function updateProgress(){ const f=CAMPOS.filter(id=>document.getElementById(id)?.value.trim()).length; document.getElementById('progressFill').style.width=Math.round((f/CAMPOS.length)*100)+'%'; }
+CAMPOS.forEach(id=>document.getElementById(id)?.addEventListener('input',updateProgress));
+function guardar(){ localStorage.setItem('dia31_resp',JSON.stringify(Object.fromEntries(CAMPOS.map(id=>[id,document.getElementById(id)?.value||''])))); const b=document.querySelector('.btn-save'); b.textContent='✓ Guardado'; setTimeout(()=>b.textContent='Guardar mis reflexiones',2000); }
+function descargar(){ const lines=['MIS RESPUESTAS — DÍA 31','40 Días de Atención Sostenida','─────────────────────────────────────────','','NOTA: Este documento contiene únicamente tus reflexiones personales.','El contenido de la lección permanece en la plataforma.','','─────────────────────────────────────────','',...CAMPOS.flatMap(id=>[`▸ ${id}`,document.getElementById(id)?.value||'(sin completar)',''])]; const a=document.createElement('a'); a.href=URL.createObjectURL(new Blob([lines.join('\n')],{type:'text/plain'})); a.download='reflexiones_dia31.txt'; a.click(); }
+try{ const s=JSON.parse(localStorage.getItem('dia31_resp')||'{}'); CAMPOS.forEach(id=>{if(s[id])document.getElementById(id).value=s[id];}); updateProgress(); }catch(e){}
+</script>
+</body>
+</html>

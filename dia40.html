@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Día 40 — Tecnología de la Transformación</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: Georgia, serif; background: #F7F2EA; color: #2C2420; min-height: 100vh; }
+  .header { background: linear-gradient(160deg, #3A2050 0%, #5C3D7A 100%); padding: 2rem 1.5rem; }
+  .header p.tag { font-family: sans-serif; font-size: 11px; letter-spacing: 3px; color: #C9B8E0; text-transform: uppercase; margin-bottom: 6px; }
+  .header h1 { font-size: 22px; font-weight: 400; color: #fff; margin-bottom: 4px; }
+  .header p.sub { font-size: 15px; color: #C9B8E0; font-style: italic; margin-bottom: 16px; }
+  .progress-bar { background: rgba(255,255,255,0.15); border-radius: 2px; height: 4px; }
+  .progress-fill { background: #A67C52; height: 100%; border-radius: 2px; width: 0%; transition: width 0.4s; }
+  .content { padding: 1.5rem; max-width: 660px; margin: 0 auto; }
+  p { font-size: 15px; line-height: 2; margin-bottom: 16px; }
+  .key-block { background: #EDE6F5; border-radius: 12px; padding: 16px 20px; margin: 20px 0; border: 0.5px solid rgba(92,61,122,0.2); }
+  .key-block p { font-style: italic; color: #3A2050; margin: 0; }
+  .quote { text-align: center; padding: 20px; margin: 20px 0; }
+  .quote p { font-style: italic; color: #5C3D7A; font-size: 17px; margin-bottom: 6px; }
+  .quote span { font-size: 13px; color: #6B5E58; font-family: sans-serif; }
+  .grid2 { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin: 20px 0; }
+  .nivel-card { background: #FFFCF8; border-radius: 10px; padding: 12px; border: 0.5px solid #E0D8CC; display: flex; align-items: center; gap: 10px; }
+  .nivel-icon { font-size: 20px; }
+  .nivel-label { font-weight: 600; color: #5C3D7A; font-family: sans-serif; font-size: 14px; }
+  .story-block { background: #FFFCF8; border-left: 3px solid #A67C52; border-radius: 0 10px 10px 0; padding: 16px 18px; margin: 20px 0; }
+  .psico-box { border: 1.5px solid #A67C52; border-radius: 12px; padding: 18px 20px; margin: 24px 0; background: #F9F3EB; }
+  .psico-box .psico-header { display: flex; align-items: center; gap: 8px; margin-bottom: 10px; }
+  .psico-box .psico-header span { font-family: sans-serif; font-size: 11px; font-weight: 700; color: #A67C52; letter-spacing: 1.5px; text-transform: uppercase; }
+  .psico-box .psico-q { font-style: italic; color: #6B4E2A; font-size: 15px; line-height: 1.7; margin-bottom: 12px; }
+  textarea { width: 100%; padding: 10px 12px; border-radius: 8px; border: 1px solid #E0D8CC; background: #FFFCF8; color: #2C2420; font-size: 14px; line-height: 1.8; resize: vertical; font-family: Georgia, serif; outline: none; }
+  input[type=text] { width: 100%; padding: 9px 12px; border-radius: 8px; border: 1px solid #E0D8CC; background: #FFFCF8; color: #2C2420; font-size: 14px; font-family: Georgia, serif; outline: none; margin-bottom: 6px; }
+  .rating-row { margin-bottom: 14px; }
+  .rating-row label { font-family: sans-serif; font-size: 13px; font-weight: 500; color: #6B4E2A; display: block; margin-bottom: 6px; }
+  .rating-btns { display: flex; gap: 5px; flex-wrap: wrap; }
+  .rating-btn { width: 34px; height: 34px; border-radius: 6px; border: 1px solid #E0D8CC; background: #FFFCF8; color: #6B5E58; font-size: 13px; cursor: pointer; font-family: sans-serif; }
+  .rating-btn.active { background: #A67C52; color: #fff; border-color: #A67C52; font-weight: 700; }
+  .grid12 { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 10px; }
+  .grid12 label { font-size: 11px; color: #A67C52; display: block; margin-bottom: 3px; font-style: italic; }
+  .btns { display: flex; gap: 10px; margin-top: 16px; }
+  .btn-save { flex: 2; padding: 13px 0; background: #5C3D7A; color: #fff; border: none; border-radius: 10px; font-size: 15px; font-weight: 600; cursor: pointer; font-family: sans-serif; }
+  .btn-dl { flex: 1; padding: 13px 0; background: #FFFCF8; color: #2C2420; border: 1px solid #E0D8CC; border-radius: 10px; font-size: 14px; cursor: pointer; font-family: sans-serif; }
+  .copyright { font-family: sans-serif; font-size: 12px; color: #6B5E58; text-align: center; margin: 24px 0; letter-spacing: 0.5px; }
+
+  .highlight { color: #5C3D7A; font-weight: 600; }
+  .stat-grid { display: grid; grid-template-columns: repeat(4,1fr); gap: 10px; margin: 20px 0; }
+  .stat-card { background: #EDE6F5; border-radius: 10px; padding: 10px; text-align: center; }
+  .stat-card .num { font-size: 26px; font-weight: 600; color: #5C3D7A; font-family: sans-serif; }
+  .stat-card .lbl { font-size: 11px; color: #6B5E58; font-family: sans-serif; margin-top: 3px; }
+  @media(max-width:500px){ .grid2,.stat-grid{ grid-template-columns:1fr 1fr; } }
+</style>
+</head>
+<body>
+
+<div class="header">
+  <p class="tag">Día 40 de la cuenta atrás</p>
+  <h1>Tecnología de la Transformación</h1>
+  <p class="sub">Las Creencias</p>
+  <div class="progress-bar"><div class="progress-fill" id="progressFill"></div></div>
+</div>
+
+<div class="content">
+
+  <p>Bienvenida al cambio. El proceso que ahora iniciás de <span class="highlight">"crecimiento continuo"</span> está apoyado por todas las fuerzas evolutivas de tu Ser. Te disponés a despertar las potencialidades que todos poseemos para crear una nueva vida de creciente bienestar como consecuencia de la sanación e integración de los cuatro niveles del ser humano:</p>
+
+  <div class="stat-grid">
+    <div class="stat-card"><div class="num">🌿</div><div class="lbl">Físico</div></div>
+    <div class="stat-card"><div class="num">💧</div><div class="lbl">Emocional</div></div>
+    <div class="stat-card"><div class="num">✨</div><div class="lbl">Mental</div></div>
+    <div class="stat-card"><div class="num">🌀</div><div class="lbl">Espiritual</div></div>
+  </div>
+
+  <!-- Pregunta 1 -->
+  <div class="psico-box">
+    <div class="psico-header"><span>📓</span><span>Diario del Psiconauta</span></div>
+    <p class="psico-q">Puntúa del 1 al 10 el grado de atención que en tu vida dedicás a cada uno de estos niveles.</p>
+    <div class="rating-row">
+      <label>Físico</label>
+      <div class="rating-btns" id="r-fisico"></div>
+    </div>
+    <div class="rating-row">
+      <label>Emocional</label>
+      <div class="rating-btns" id="r-emocional"></div>
+    </div>
+    <div class="rating-row">
+      <label>Mental</label>
+      <div class="rating-btns" id="r-mental"></div>
+    </div>
+    <div class="rating-row">
+      <label>Espiritual</label>
+      <div class="rating-btns" id="r-espiritual"></div>
+    </div>
+  </div>
+
+  <p>Desde el momento en que acometiste esta aventura de la conciencia, decidiste crecer. Tras 40 días de <span class="highlight">ATENCIÓN</span> y dedicación, experimentarás una expansión en la visión y comprensión del "Yo mismo".</p>
+
+  <p>¿Te has preguntado por qué en muchas áreas vivimos por debajo de nuestras verdaderas posibilidades? Vale la pena abordar nuestras conductas desde el ángulo de <span class="highlight">las creencias que subyacen en nuestro subconsciente</span>.</p>
+
+  <div class="story-block">
+    <p style="font-family:sans-serif;font-size:11px;font-weight:700;color:#A67C52;text-transform:uppercase;letter-spacing:1.5px;margin-bottom:8px">🔬 El experimento de la pulga</p>
+    <p>Amaestrar una pulga es simple: se la encierra en un frasco. Salta repetidamente intentando salir. Al cabo de muchos intentos fallidos, <strong>deja de saltar</strong>. Ya se puede quitar el tapón — y la pulga jamás intentará salir. Su cerebro <strong>cree que no puede</strong>.</p>
+  </div>
+
+  <div class="key-block">
+    <p>A lo largo de esta cuarentena vas a quitar el tapón de tus propias limitaciones y vas a <strong>"saltar fuera del frasco"</strong>.</p>
+  </div>
+
+  <!-- Pregunta 2 -->
+  <div class="psico-box">
+    <div class="psico-header"><span>📓</span><span>Diario del Psiconauta</span></div>
+    <p class="psico-q">¿Te atrevés a citar los aspectos que han limitado tu personalidad y ante los que creés haber tirado la toalla?</p>
+    <textarea id="limitaciones" rows="4" placeholder="Escribí libremente, sin juzgarte..."></textarea>
+  </div>
+
+  <p>En la Universidad de Berkeley se investigó el número de negativas que se les dice a los niños entre 3 y 7 años. Frases como <span class="highlight">"No se puede", "Nunca lo vas a conseguir"</span> se pronuncian entre 100.000 y 150.000 veces, con un poderoso efecto formateador en negativo.</p>
+
+  <div style="background:#EDE6F5;border-radius:12px;padding:20px;margin:20px 0;text-align:center">
+    <div style="font-size:36px;font-weight:700;color:#5C3D7A;font-family:sans-serif">Solo un 6%</div>
+    <div style="font-size:13px;color:#6B5E58;font-family:sans-serif;margin-top:4px">de los mensajes recibidos en la infancia son capacitadores y positivos</div>
+  </div>
+
+  <!-- Pregunta 3 -->
+  <div class="psico-box">
+    <div class="psico-header"><span>📓</span><span>Diario del Psiconauta</span></div>
+    <p class="psico-q">Citá tres situaciones en las que solés expresar «no puedo...»</p>
+    <input type="text" id="np1" placeholder="1. No puedo...">
+    <input type="text" id="np2" placeholder="2. No puedo...">
+    <input type="text" id="np3" placeholder="3. No puedo...">
+  </div>
+
+  <!-- Pregunta 4 -->
+  <div class="psico-box">
+    <div class="psico-header"><span>📓</span><span>Diario del Psiconauta</span></div>
+    <p class="psico-q">¿Reconocés en tu padre o en tu madre la raíz de tales actitudes limitadoras? En caso afirmativo, explicalo.</p>
+    <textarea id="padre_madre" rows="4" placeholder="Reflexioná con honestidad y ternura..."></textarea>
+  </div>
+
+  <div class="quote">
+    <p>"Y puesto que así lo creía, así fue."</p>
+    <span>— Richard Bach</span>
+  </div>
+
+  <p>Las creencias son, en realidad, los gobernadores del cerebro. <strong>Cambiando nuestras creencias modificamos nuestras acciones, y de ello se derivan cambios en nuestro destino.</strong></p>
+
+  <!-- Pregunta 5 -->
+  <div class="psico-box">
+    <div class="psico-header"><span>📓</span><span>Diario del Psiconauta</span></div>
+    <p class="psico-q">Describí una experiencia propia en la que varias personas hayan interpretado de manera diferente un mismo hecho.</p>
+    <textarea id="experiencia" rows="4" placeholder="Un mismo hecho, distintas miradas..."></textarea>
+  </div>
+
+  <!-- Pregunta 6 — grid -->
+  <div class="psico-box">
+    <div class="psico-header"><span>📓</span><span>Diario del Psiconauta</span></div>
+    <p class="psico-q">Completá en muy pocas palabras este cuestionario, dejándote brotar de manera espontánea:</p>
+    <div class="grid12" id="creencias-grid"></div>
+  </div>
+
+  <div class="key-block">
+    <p style="font-size:16px;font-weight:700;color:#3A2050;text-align:center">DARSE CUENTA DE ESTA REALIDAD SUPONE YA EL 90% DE TU CAMBIO.<br><span style="font-size:14px;font-weight:400">ATENCIÓN es la palabra clave. Objetivo: mantener la atención al momento presente.</span></p>
+  </div>
+
+  <div class="quote">
+    <p>"No debemos considerar que nuestro pasado está establecido definitivamente. Mi pasado varía a cada minuto, en función del significado que se le da ahora, en este momento."</p>
+    <span>— Czesław Miłosz</span>
+  </div>
+
+  <p class="copyright">© José María Doria · Escuela Española de Desarrollo Transpersonal (EDT)</p>
+
+  <div class="btns">
+    <button class="btn-save" onclick="guardar()">Guardar mis reflexiones</button>
+    <button class="btn-dl" onclick="descargar()">Descargar mis reflexiones 📄</button>
+  </div>
+
+</div>
+
+<script>
+const ITEMS_CREENCIAS = ["el amor","el trabajo","la muerte","el dinero","la espiritualidad","la amistad","Dios","la libertad","la imagen","la verdad","el éxito","la soledad"];
+const RATINGS = ["fisico","emocional","mental","espiritual"];
+const ratings = {};
+
+// Build rating buttons
+RATINGS.forEach(r => {
+  const el = document.getElementById('r-' + r);
+  ratings[r] = 0;
+  for(let i=1;i<=10;i++){
+    const btn = document.createElement('button');
+    btn.className = 'rating-btn';
+    btn.textContent = i;
+    btn.dataset.val = i;
+    btn.dataset.key = r;
+    btn.onclick = function(){
+      ratings[r] = i;
+      document.querySelectorAll(`[data-key="${r}"]`).forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      updateProgress();
+    };
+    el.appendChild(btn);
+  }
+});
+
+// Build creencias grid
+const grid = document.getElementById('creencias-grid');
+ITEMS_CREENCIAS.forEach(item => {
+  const div = document.createElement('div');
+  div.innerHTML = `<label>¿qué significa para ti ${item}?</label><input type="text" id="c-${item.replace(/ /g,'_')}" placeholder="...">`;
+  grid.appendChild(div);
+  div.querySelector('input').addEventListener('input', updateProgress);
+});
+
+function updateProgress(){
+  const total = 6;
+  let filled = 0;
+  if(Object.values(ratings).some(v=>v>0)) filled++;
+  if(document.getElementById('limitaciones').value.trim()) filled++;
+  if(document.getElementById('np1').value.trim()) filled++;
+  if(document.getElementById('padre_madre').value.trim()) filled++;
+  if(document.getElementById('experiencia').value.trim()) filled++;
+  if(ITEMS_CREENCIAS.some(it => document.getElementById('c-'+it.replace(/ /g,'_'))?.value.trim())) filled++;
+  document.getElementById('progressFill').style.width = Math.round((filled/total)*100)+'%';
+}
+
+document.querySelectorAll('textarea,input[type=text]').forEach(el => el.addEventListener('input', updateProgress));
+
+function guardar(){
+  const data = {
+    niveles: ratings,
+    limitaciones: document.getElementById('limitaciones').value,
+    no_puedo: [document.getElementById('np1').value, document.getElementById('np2').value, document.getElementById('np3').value],
+    padre_madre: document.getElementById('padre_madre').value,
+    experiencia: document.getElementById('experiencia').value,
+    creencias: Object.fromEntries(ITEMS_CREENCIAS.map(it => [it, document.getElementById('c-'+it.replace(/ /g,'_'))?.value||'']))
+  };
+  localStorage.setItem('dia40_resp', JSON.stringify(data));
+  const btn = document.querySelector('.btn-save');
+  btn.textContent = '✓ Guardado';
+  setTimeout(()=> btn.textContent = 'Guardar mis reflexiones', 2000);
+}
+
+function descargar(){
+  const lines = [
+    'MIS RESPUESTAS — DÍA 40',
+    '40 Días de Atención Sostenida',
+    '─────────────────────────────────────────','',
+    'NOTA: Este documento contiene únicamente tus reflexiones personales.','El contenido de la lección permanece en la plataforma.','','─────────────────────────────────────────','',
+    '▸ Niveles de atención (1-10)',
+    ...RATINGS.map(r => `  ${r.charAt(0).toUpperCase()+r.slice(1)}: ${ratings[r]||'-'}/10`),'',
+    '▸ Aspectos que me han limitado',
+    document.getElementById('limitaciones').value||'(sin completar)','',
+    '▸ Tres situaciones donde expreso «no puedo»',
+    `  1. ${document.getElementById('np1').value}`,
+    `  2. ${document.getElementById('np2').value}`,
+    `  3. ${document.getElementById('np3').value}`,'',
+    '▸ Raíces familiares',
+    document.getElementById('padre_madre').value||'(sin completar)','',
+    '▸ Un hecho interpretado de forma diferente',
+    document.getElementById('experiencia').value||'(sin completar)','',
+    '▸ ¿Qué significa para mí...?',
+    ...ITEMS_CREENCIAS.map(it => `  ${it}: ${document.getElementById('c-'+it.replace(/ /g,'_'))?.value||''}`)
+  ];
+  const a = document.createElement('a');
+  a.href = URL.createObjectURL(new Blob([lines.join('\n')],{type:'text/plain'}));
+  a.download = 'reflexiones_dia40.txt';
+  a.click();
+}
+
+function descargarPagina(){
+  const html = document.documentElement.outerHTML;
+  const a = document.createElement('a');
+  a.href = URL.createObjectURL(new Blob([html], {type: 'text/html'}));
+  a.download = 'dia40_tecnologia_transformacion.html';
+  a.click();
+}
+
+// Restore saved data
+try {
+  const saved = JSON.parse(localStorage.getItem('dia40_resp')||'{}');
+  if(saved.niveles) Object.entries(saved.niveles).forEach(([k,v])=>{ if(v){ ratings[k]=v; document.querySelector(`[data-key="${k}"][data-val="${v}"]`)?.classList.add('active'); }});
+  if(saved.limitaciones) document.getElementById('limitaciones').value = saved.limitaciones;
+  if(saved.no_puedo){ document.getElementById('np1').value=saved.no_puedo[0]||''; document.getElementById('np2').value=saved.no_puedo[1]||''; document.getElementById('np3').value=saved.no_puedo[2]||''; }
+  if(saved.padre_madre) document.getElementById('padre_madre').value = saved.padre_madre;
+  if(saved.experiencia) document.getElementById('experiencia').value = saved.experiencia;
+  if(saved.creencias) Object.entries(saved.creencias).forEach(([k,v])=>{ const el=document.getElementById('c-'+k.replace(/ /g,'_')); if(el) el.value=v; });
+  updateProgress();
+} catch(e){}
+</script>
+</body>
+</html>
