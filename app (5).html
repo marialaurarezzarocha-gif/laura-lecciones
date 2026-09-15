@@ -1,0 +1,722 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0" />
+<title>40 Días de Atención Sostenida — L'Aura</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root { --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; }
+  * { box-sizing: border-box; }
+  html, body { margin: 0; padding: 0; background: #F7F2EA; }
+  #root { min-height: 100vh; }
+</style>
+<script src="https://cdn.jsdelivr.net/npm/react@18.2.0/umd/react.production.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/react-dom@18.2.0/umd/react-dom.production.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@babel/standalone@7.25.6/babel.min.js"></script>
+</head>
+<body>
+<div id="root"></div>
+<script type="text/babel" data-presets="react">
+
+const { useState, useEffect } = React;
+
+const SUPABASE_URL = "https://lygjdzpiupfnkapmqvzc.supabase.co";
+const SUPABASE_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Imx5Z2pkenBpdXBmbmthcG1xdnpjIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODk0MjMzNzYsImV4cCI6MjEwNDk5OTM3Nn0.avuIgwdlubKO4RMlN0cnlTPcNmIkRv8sQFPbT-W_4VM";
+
+const C = {
+  bg: "#F7F2EA", bgCard: "#FFFCF8",
+  plum: "#5C3D7A", plumDark: "#3A2050", plumLight: "#EDE6F5",
+  gold: "#A67C52", goldLight: "#F9F3EB", goldDark: "#6B4E2A",
+  carbon: "#2C2420", carbon2: "#6B5E58",
+  border: "#E0D8CC", white: "#FFFCF8",
+  night: "#2D3561", nightLight: "#ECEEF8",
+  error: "#E24B4A",
+};
+
+const ADMIN_CODE = "LAURA2024*Admin";
+const INVITE_CODE = "AURA40*2024";
+
+const LECCION_DIA = {
+  1:"40",2:"39",3:"38",4:"37",5:"36",6:"35-34",7:"35-34",
+  8:"33",9:"32",10:"31",11:"30",12:"29",13:"28-27",14:"28-27",
+  15:"26",16:"25",17:"24",18:"23",19:"22",20:"21-20",21:"21-20",
+  22:"19",23:"18",24:"17",25:"16",26:"15",27:"14-13",28:"14-13",
+  29:"12",30:"11",31:"10",32:"9",33:"8",34:"7-6",35:"7-6",
+  36:"5",37:"4",38:"3-2",39:"3-2",40:"1"
+};
+
+const BASE = "https://marialaurarezzarocha-gif.github.io/laura-lecciones";
+const DRIVE_LINKS = {
+  1:BASE+"/dia40.html",2:BASE+"/dia39.html",3:BASE+"/dia38.html",
+  4:BASE+"/dia37.html",5:BASE+"/dia36.html",6:BASE+"/dia35_34.html",
+  7:BASE+"/dia35_34.html",8:BASE+"/dia33.html",9:BASE+"/dia32.html",
+  10:BASE+"/dia31.html",11:BASE+"/dia_30_las_afirmaciones.html",
+  12:BASE+"/dia_29_las_creencias.html",13:BASE+"/dia_28_27_relaciones_sanas.html",
+  14:BASE+"/dia_28_27_relaciones_sanas.html",15:BASE+"/dia_26_eL_equilibrista.html",
+  16:BASE+"/dia_25_relacion_con_el_dinero.html",17:BASE+"/dia_24_el_rio.html",
+  18:BASE+"/dia_23_poder_curativo_del_perdon.html",19:BASE+"/dia_22_el_espejo.html",
+  20:BASE+"/dia_21_20_relaciones_dolor_amor.html",21:BASE+"/dia_21_20_relaciones_dolor_amor.html",
+  22:BASE+"/dia_19_poder_de_la_visualizacion.html",23:BASE+"/dia_18_el_buho_y_la_lechuza.html",
+  24:BASE+"/dia_17_hemisferios_cerebrales.html",25:BASE+"/dia_16_el_silencio_interior.html",
+  26:BASE+"/dia_15_la_medida.html",27:BASE+"/dia_14_13_relacione..s_y_conscientes.html",
+  28:BASE+"/dia_14_13_relacione..s_y_conscientes.html",29:BASE+"/dia_12_las_suposiciones.html",
+  30:BASE+"/dia_11_el_masaje_psiquico.html",31:BASE+"/dia_10_cielo_e_infierno.html",
+  32:BASE+"/dia_9_claves_para_la_superacion.html",33:BASE+"/dia_8_la_nueva_persona.html",
+  34:BASE+"/dia_7_6_los_mitos_del_amor.html",35:BASE+"/dia_7_6_los_mitos_del_amor.html",
+  36:BASE+"/dia_5_el_destino_y_...hados_caminos.html",37:BASE+"/dia_4_la_sospecha.html",
+  38:BASE+"/dia_3_2_un_dia_de_la_vida_futura.html",39:BASE+"/dia_3_2_un_dia_de_la_vida_futura.html",
+  40:BASE+"/dia_1_la_llegada.html",
+};
+
+// ─── API helpers ─────────────────────────────────────────────────────────────
+const api = async (path, opts = {}) => {
+  const res = await fetch(`${SUPABASE_URL}/rest/v1/${path}`, {
+    headers: {
+      "apikey": SUPABASE_KEY,
+      "Authorization": `Bearer ${SUPABASE_KEY}`,
+      "Content-Type": "application/json",
+      "Prefer": "return=representation",
+      ...opts.headers
+    },
+    ...opts
+  });
+  if (!res.ok && res.status !== 404) {
+    const err = await res.json().catch(() => ({}));
+    throw new Error(err.message || res.statusText);
+  }
+  return res.status === 204 ? null : res.json().catch(() => null);
+};
+
+const hashPw = async (pw) => {
+  const buf = await crypto.subtle.digest("SHA-256", new TextEncoder().encode(pw));
+  return Array.from(new Uint8Array(buf)).map(b => b.toString(16).padStart(2,"0")).join("");
+};
+
+// ─── Generación de documento descargable con la estética de la app ──────────
+const escapeHtml = (s="") => s.replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;");
+
+const DOC_STYLES = `
+  :root{--font-sans:'Inter',-apple-system,'Segoe UI',sans-serif;}
+  *{box-sizing:border-box;}
+  body{margin:0;padding:48px 20px;background:${C.bg};color:${C.carbon};font-family:Georgia,serif;line-height:1.75;}
+  .doc{max-width:640px;margin:0 auto;}
+  .cover{background:linear-gradient(160deg,${C.plumDark} 0%,${C.plum} 100%);color:#fff;border-radius:14px;padding:32px 24px;margin-bottom:28px;text-align:center;}
+  .cover .eyebrow{font-family:var(--font-sans);font-size:11px;letter-spacing:2px;text-transform:uppercase;color:#C9B8E0;margin:0 0 8px;}
+  .cover h1{font-family:Georgia,serif;font-weight:400;font-size:24px;letter-spacing:1px;margin:0 0 6px;}
+  .cover .meta{font-family:var(--font-sans);font-size:12px;color:rgba(255,255,255,0.75);margin:0;}
+  .day{margin-bottom:8px;page-break-inside:avoid;}
+  .day-badge{background:${C.plumLight};border-left:3px solid ${C.plum};border-radius:10px;padding:10px 14px;margin-bottom:14px;font-family:var(--font-sans);font-weight:600;font-size:14px;color:${C.plumDark};}
+  .section-am{background:${C.plumLight};border-left:3px solid ${C.plum};border-radius:10px;padding:9px 14px;margin:18px 0 12px;font-family:var(--font-sans);font-weight:600;font-size:13px;color:${C.plumDark};}
+  .section-pm{background:${C.nightLight};border-left:3px solid ${C.night};border-radius:10px;padding:9px 14px;margin:18px 0 12px;font-family:var(--font-sans);font-weight:600;font-size:13px;color:${C.night};}
+  .field{margin-bottom:14px;}
+  .field-label{font-family:var(--font-sans);font-weight:600;font-size:11px;color:${C.plum};text-transform:uppercase;letter-spacing:0.5px;margin:0 0 4px;}
+  .field-value{font-size:15px;white-space:pre-wrap;color:${C.carbon};margin:0;}
+  .field-value.empty{color:${C.carbon2};font-style:italic;font-size:13px;}
+  .divider{border:none;border-top:1px dashed ${C.border};margin:26px 0;}
+  .footer{text-align:center;font-family:var(--font-sans);font-size:11px;color:${C.carbon2};margin-top:24px;line-height:1.6;}
+  @media print{
+    body{background:#fff;padding:0;}
+    .cover{-webkit-print-color-adjust:exact;print-color-adjust:exact;}
+    .day{page-break-after:always;}
+  }
+`;
+
+const fieldHtml = (label, value) =>
+  `<div class="field"><p class="field-label">${escapeHtml(label)}</p><p class="field-value${value?"":" empty"}">${value?escapeHtml(value):"(sin completar)"}</p></div>`;
+
+// ─── UI helpers ──────────────────────────────────────────────────────────────
+function Input({ label, type="text", value, onChange, placeholder, error }) {
+  return (
+    <div style={{ marginBottom: 14 }}>
+      {label && <p style={{ fontSize: 13, color: C.carbon2, marginBottom: 4, fontFamily: "var(--font-sans)" }}>{label}</p>}
+      <input type={type} value={value} onChange={e => onChange(e.target.value)} placeholder={placeholder}
+        style={{ width: "100%", padding: "10px 14px", borderRadius: 8, border: "1px solid " + (error ? C.error : C.border), background: C.white, color: C.carbon, fontSize: 14, fontFamily: "var(--font-sans)", outline: "none", boxSizing: "border-box" }} />
+      {error && <p style={{ color: C.error, fontSize: 12, marginTop: 4, fontFamily: "var(--font-sans)" }}>{error}</p>}
+    </div>
+  );
+}
+
+function Btn({ children, onClick, color, loading, full, secondary }) {
+  return (
+    <button onClick={onClick} disabled={loading}
+      style={{ width: full ? "100%" : "auto", padding: "11px 20px", background: secondary ? "transparent" : (color || C.plum), color: secondary ? C.carbon2 : "#fff", border: secondary ? "1px solid " + C.border : "none", borderRadius: 10, fontSize: 14, fontWeight: 600, cursor: loading ? "wait" : "pointer", fontFamily: "var(--font-sans)", opacity: loading ? 0.7 : 1, transition: "opacity 0.2s" }}>
+      {loading ? "..." : children}
+    </button>
+  );
+}
+
+function Field({ label, hint, value, onChange, rows=3, placeholder }) {
+  return (
+    <div style={{ marginBottom: 14 }}>
+      {label && <p style={{ fontSize: 13, fontWeight: 600, color: C.plumDark, margin: "0 0 3px", fontFamily: "var(--font-sans)" }}>{label}</p>}
+      {hint && <p style={{ fontSize: 12, color: C.carbon2, margin: "0 0 5px", fontStyle: "italic" }}>{hint}</p>}
+      <textarea value={value} onChange={e => onChange(e.target.value)} rows={rows} placeholder={placeholder}
+        style={{ width: "100%", padding: "10px 12px", borderRadius: 8, border: "1px solid " + C.border, background: C.white, color: C.carbon, fontSize: 14, lineHeight: 1.8, resize: "vertical", boxSizing: "border-box", fontFamily: "Georgia,serif", outline: "none" }} />
+    </div>
+  );
+}
+
+function Section({ title, color, children }) {
+  const [open, setOpen] = useState(true);
+  const c = color || C.plum;
+  return (
+    <div style={{ marginBottom: 12, borderRadius: 10, border: "0.5px solid " + c + "30", overflow: "hidden" }}>
+      <div onClick={() => setOpen(o => !o)} style={{ background: c + "15", padding: "9px 14px", display: "flex", alignItems: "center", justifyContent: "space-between", cursor: "pointer" }}>
+        <span style={{ fontWeight: 600, fontSize: 13, color: C.plumDark, fontFamily: "var(--font-sans)" }}>{title}</span>
+        <span style={{ color: C.carbon2, fontSize: 12 }}>{open ? "▲" : "▼"}</span>
+      </div>
+      {open && <div style={{ padding: "14px" }}>{children}</div>}
+    </div>
+  );
+}
+
+// ─── ADMIN PANEL ─────────────────────────────────────────────────────────────
+function AdminPanel({ onLogout }) {
+  const [users, setUsers] = useState([]);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => { loadUsers(); }, []);
+
+  const loadUsers = async () => {
+    setLoading(true);
+    try {
+      const data = await api("usuarios?select=*&order=created_at.desc");
+      setUsers(data || []);
+    } catch(e) { console.error(e); }
+    setLoading(false);
+  };
+
+  const toggleUser = async (id, active) => {
+    await api(`usuarios?id=eq.${id}`, { method: "PATCH", body: JSON.stringify({ active: !active }) });
+    loadUsers();
+  };
+
+  const daysSince = (dateStr) => {
+    if (!dateStr) return 0;
+    return Math.floor((Date.now() - new Date(dateStr)) / 86400000) + 1;
+  };
+
+  return (
+    <div style={{ background: C.bg, minHeight: "100vh" }}>
+      <div style={{ background: "linear-gradient(160deg, " + C.plumDark + " 0%, " + C.plum + " 100%)", padding: "1rem 1.5rem", display: "flex", alignItems: "center", justifyContent: "space-between" }}>
+        <div>
+          <p style={{ fontSize: 11, color: "#C9B8E0", margin: "0 0 2px", fontFamily: "var(--font-sans)", textTransform: "uppercase", letterSpacing: 1 }}>Panel de administración</p>
+          <p style={{ fontSize: 16, color: "#fff", margin: 0, fontFamily: "Georgia,serif" }}>40 Días de Atención Sostenida</p>
+        </div>
+        <button onClick={onLogout} style={{ fontSize: 12, color: "rgba(255,255,255,0.6)", background: "none", border: "none", cursor: "pointer", fontFamily: "var(--font-sans)" }}>Salir</button>
+      </div>
+
+      <div style={{ padding: "1.5rem", maxWidth: 660, margin: "0 auto" }}>
+        <div style={{ display: "grid", gridTemplateColumns: "repeat(3,1fr)", gap: 10, marginBottom: 24 }}>
+          {[
+            { l: "Participantes", v: users.length, c: C.plum, bg: C.plumLight },
+            { l: "Activos", v: users.filter(u => u.active).length, c: C.gold, bg: C.goldLight },
+            { l: "Código de acceso", v: INVITE_CODE, c: C.plumDark, bg: C.plumLight, small: true },
+          ].map(m => (
+            <div key={m.l} style={{ background: m.bg, borderRadius: 10, padding: "0.75rem", textAlign: "center" }}>
+              <div style={{ fontSize: m.small ? 11 : 24, fontWeight: 600, color: m.c, fontFamily: "var(--font-sans)", wordBreak: "break-all" }}>{m.v}</div>
+              <div style={{ fontSize: 11, color: C.carbon2, marginTop: 3, fontFamily: "var(--font-sans)" }}>{m.l}</div>
+            </div>
+          ))}
+        </div>
+
+        <p style={{ fontWeight: 600, fontSize: 14, marginBottom: 12, fontFamily: "var(--font-sans)", color: C.plumDark }}>Participantes inscriptos</p>
+
+        {loading ? (
+          <p style={{ color: C.carbon2, fontFamily: "var(--font-sans)", fontSize: 14 }}>Cargando...</p>
+        ) : users.length === 0 ? (
+          <div style={{ background: C.bgCard, borderRadius: 12, padding: "2rem", textAlign: "center", border: "0.5px solid " + C.border }}>
+            <p style={{ fontSize: 36, marginBottom: 8 }}>🌱</p>
+            <p style={{ color: C.carbon2, fontFamily: "var(--font-sans)", fontSize: 14 }}>Aún no hay participantes inscriptos.</p>
+            <p style={{ color: C.carbon2, fontFamily: "var(--font-sans)", fontSize: 13, marginTop: 6 }}>Compartí el código <strong>{INVITE_CODE}</strong> para que puedan registrarse.</p>
+          </div>
+        ) : users.map(u => (
+          <div key={u.id} style={{ background: C.bgCard, borderRadius: 12, padding: "1rem 1.25rem", marginBottom: 10, border: "0.5px solid " + C.border, display: "flex", alignItems: "center", justifyContent: "space-between", gap: 10 }}>
+            <div>
+              <p style={{ fontWeight: 600, fontSize: 14, color: C.carbon, margin: "0 0 2px", fontFamily: "var(--font-sans)" }}>{u.nombre}</p>
+              <p style={{ fontSize: 12, color: C.carbon2, margin: "0 0 2px", fontFamily: "var(--font-sans)" }}>{u.email}</p>
+              <p style={{ fontSize: 12, color: C.plum, margin: 0, fontFamily: "var(--font-sans)" }}>
+                Día {Math.min(40, daysSince(u.start_date))}/40 · Inició: {u.start_date ? new Date(u.start_date).toLocaleDateString("es-ES") : "—"}
+              </p>
+            </div>
+            <div style={{ display: "flex", flexDirection: "column", alignItems: "flex-end", gap: 6 }}>
+              <span style={{ fontSize: 11, padding: "2px 10px", borderRadius: 20, background: u.active ? C.sageLight || "#EFF7F4" : C.plumLight, color: u.active ? "#2E4D35" : C.plum, fontFamily: "var(--font-sans)", fontWeight: 600 }}>
+                {u.active ? "Activo" : "Inactivo"}
+              </span>
+              <button onClick={() => toggleUser(u.id, u.active)}
+                style={{ fontSize: 11, color: C.carbon2, background: "none", border: "1px solid " + C.border, borderRadius: 6, padding: "3px 10px", cursor: "pointer", fontFamily: "var(--font-sans)" }}>
+                {u.active ? "Desactivar" : "Activar"}
+              </button>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  );
+}
+
+// ─── AUTH ─────────────────────────────────────────────────────────────────────
+function AuthScreen({ onLogin, onAdminLogin }) {
+  const [modo, setModo] = useState("login"); // login | registro
+  const [email, setEmail] = useState("");
+  const [pw, setPw] = useState("");
+  const [pw2, setPw2] = useState("");
+  const [nombre, setNombre] = useState("");
+  const [codigo, setCodigo] = useState("");
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState("");
+
+  const login = async () => {
+    setError(""); setLoading(true);
+    try {
+      if (email === "admin" && pw === ADMIN_CODE) { onAdminLogin(); return; }
+      const hash = await hashPw(pw);
+      const data = await api(`usuarios?email=eq.${encodeURIComponent(email)}&pw_hash=eq.${hash}&select=*`);
+      if (!data || data.length === 0) { setError("Email o contraseña incorrectos."); setLoading(false); return; }
+      const user = data[0];
+      if (!user.active) { setError("Tu acceso está desactivado. Contactá a María Laura."); setLoading(false); return; }
+      onLogin(user);
+    } catch(e) { setError("Error de conexión. Intentá de nuevo."); }
+    setLoading(false);
+  };
+
+  const registro = async () => {
+    setError(""); 
+    if (!nombre.trim()) { setError("Ingresá tu nombre."); return; }
+    if (!email.trim() || !email.includes("@")) { setError("Email inválido."); return; }
+    if (pw.length < 8) { setError("La contraseña debe tener al menos 8 caracteres."); return; }
+    if (pw !== pw2) { setError("Las contraseñas no coinciden."); return; }
+    if (codigo.trim() !== INVITE_CODE) { setError("Código de acceso inválido. Solicitalo a María Laura."); return; }
+    setLoading(true);
+    try {
+      const existing = await api(`usuarios?email=eq.${encodeURIComponent(email)}&select=id`);
+      if (existing && existing.length > 0) { setError("Ya existe una cuenta con ese email."); setLoading(false); return; }
+      const hash = await hashPw(pw);
+      const newUser = await api("usuarios", {
+        method: "POST",
+        body: JSON.stringify({ nombre: nombre.trim(), email: email.trim().toLowerCase(), pw_hash: hash, active: true, start_date: new Date().toISOString().split("T")[0] })
+      });
+      onLogin(Array.isArray(newUser) ? newUser[0] : newUser);
+    } catch(e) { setError("Error al crear la cuenta. Intentá de nuevo."); }
+    setLoading(false);
+  };
+
+  return (
+    <div style={{ minHeight: "100vh", background: C.bg, display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center", padding: "2rem" }}>
+      <div style={{ width: 64, height: 64, borderRadius: "50%", background: C.plumLight, display: "flex", alignItems: "center", justifyContent: "center", marginBottom: 16, fontSize: 28, border: "1.5px solid " + C.plum }}>🧭</div>
+      <h1 style={{ fontFamily: "Georgia,serif", fontSize: 22, fontWeight: 400, color: C.plumDark, letterSpacing: 2, marginBottom: 4 }}>40 Días de Atención Sostenida</h1>
+      <p style={{ fontSize: 13, color: C.carbon2, marginBottom: "1.5rem", fontFamily: "var(--font-sans)" }}>con María Laura</p>
+
+      <div style={{ width: "100%", maxWidth: 340, background: C.bgCard, borderRadius: 14, padding: "1.5rem", border: "0.5px solid " + C.border }}>
+        <div style={{ display: "flex", marginBottom: 20, background: C.bg, borderRadius: 8, padding: 3 }}>
+          {[["login","Ingresar"],["registro","Registrarme"]].map(([m,l]) => (
+            <button key={m} onClick={() => { setModo(m); setError(""); }}
+              style={{ flex: 1, padding: "8px 0", background: modo === m ? C.plum : "transparent", color: modo === m ? "#fff" : C.carbon2, border: "none", borderRadius: 6, fontSize: 13, fontWeight: 600, cursor: "pointer", fontFamily: "var(--font-sans)", transition: "all 0.2s" }}>
+              {l}
+            </button>
+          ))}
+        </div>
+
+        {modo === "login" ? (
+          <>
+            <Input label="Email" type="email" value={email} onChange={setEmail} placeholder="tu@email.com" />
+            <Input label="Contraseña" type="password" value={pw} onChange={setPw} placeholder="Tu contraseña" />
+            {error && <p style={{ color: C.error, fontSize: 13, marginBottom: 10, fontFamily: "var(--font-sans)" }}>{error}</p>}
+            <Btn full onClick={login} loading={loading}>Ingresar</Btn>
+          </>
+        ) : (
+          <>
+            <Input label="Nombre completo" value={nombre} onChange={setNombre} placeholder="Tu nombre" />
+            <Input label="Email" type="email" value={email} onChange={setEmail} placeholder="tu@email.com" />
+            <Input label="Contraseña" type="password" value={pw} onChange={setPw} placeholder="Mínimo 8 caracteres" />
+            <Input label="Repetir contraseña" type="password" value={pw2} onChange={setPw2} placeholder="Repetí tu contraseña" />
+            <Input label="Código de acceso" value={codigo} onChange={setCodigo} placeholder="Solicitalo a María Laura" />
+            {error && <p style={{ color: C.error, fontSize: 13, marginBottom: 10, fontFamily: "var(--font-sans)" }}>{error}</p>}
+            <Btn full onClick={registro} loading={loading}>Crear mi cuenta</Btn>
+          </>
+        )}
+      </div>
+    </div>
+  );
+}
+
+// ─── APP PRINCIPAL ────────────────────────────────────────────────────────────
+function App() {
+  const [user, setUser] = useState(null);
+  const [isAdmin, setIsAdmin] = useState(false);
+  const [page, setPage] = useState("inicio");
+  const [selDay, setSelDay] = useState(null);
+  const [nacimientos, setNacimientos] = useState(Array(7).fill(""));
+  const [entries, setEntries] = useState({});
+  const [saved, setSaved] = useState(false);
+  const [loadingData, setLoadingData] = useState(false);
+
+  // Cargar datos del usuario desde Supabase
+  useEffect(() => {
+    if (!user) return;
+    const loadData = async () => {
+      setLoadingData(true);
+      try {
+        const [nac, ents] = await Promise.all([
+          api(`nacimientos?user_id=eq.${user.id}&select=*`),
+          api(`entradas?user_id=eq.${user.id}&select=*`)
+        ]);
+        if (nac && nac.length > 0) setNacimientos(nac[0].items || Array(7).fill(""));
+        if (ents) {
+          const map = {};
+          ents.forEach(e => { map[e.dia] = e.data; });
+          setEntries(map);
+        }
+      } catch(e) { console.error(e); }
+      setLoadingData(false);
+    };
+    loadData();
+  }, [user]);
+
+  const todayNum = user?.start_date
+    ? Math.min(40, Math.max(1, Math.floor((Date.now() - new Date(user.start_date)) / 86400000) + 1))
+    : 1;
+
+  const countdown = d => 41 - d;
+  const getEntry = d => entries[d] || {};
+  const isComplete = d => { const e = getEntry(d); return !!(e.titulo || e.sucesos || e.gratitud); };
+
+  const saveNacimientos = async (arr) => {
+    setNacimientos(arr);
+    try {
+      const existing = await api(`nacimientos?user_id=eq.${user.id}&select=id`);
+      if (existing && existing.length > 0) {
+        await api(`nacimientos?user_id=eq.${user.id}`, { method: "PATCH", body: JSON.stringify({ items: arr }) });
+      } else {
+        await api("nacimientos", { method: "POST", body: JSON.stringify({ user_id: user.id, items: arr }) });
+      }
+    } catch(e) { console.error(e); }
+  };
+
+  const saveEntry = async (d, data) => {
+    const updated = { ...entries, [d]: data };
+    setEntries(updated);
+    setSaved(true);
+    setTimeout(() => setSaved(false), 2000);
+    try {
+      const existing = await api(`entradas?user_id=eq.${user.id}&dia=eq.${d}&select=id`);
+      if (existing && existing.length > 0) {
+        await api(`entradas?user_id=eq.${user.id}&dia=eq.${d}`, { method: "PATCH", body: JSON.stringify({ data }) });
+      } else {
+        await api("entradas", { method: "POST", body: JSON.stringify({ user_id: user.id, dia: d, data }) });
+      }
+    } catch(e) { console.error(e); }
+  };
+
+  const setField = (d, f, v) => {
+    const updated = { ...getEntry(d), [f]: v };
+    setEntries({ ...entries, [d]: updated });
+  };
+
+  const nacimientosBlockHtml = () => nacimientos.filter(Boolean).length
+    ? `<div class="field"><p class="field-label">Nacimientos a...</p><p class="field-value">${nacimientos.filter(Boolean).map((n,i)=>escapeHtml((i+1)+". "+n)).join("<br/>")}</p></div><hr class="divider"/>`
+    : "";
+
+  const dayBlockHtml = (d, e) => {
+    const cd = countdown(d);
+    return `
+    <div class="day">
+      <div class="day-badge">Día ${cd} de la cuenta atrás (Día ${d}/40)</div>
+      <div class="section-am">☀️ Mañana</div>
+      ${fieldHtml("Título del día", e.titulo)}
+      ${fieldHtml("Decretos positivos", e.decretos)}
+      ${fieldHtml("Agenda evolutiva del día", e.agenda)}
+      <div class="section-pm">🌙 Noche</div>
+      ${fieldHtml("Sucesos mágicos, especiales o significativos", e.sucesos)}
+      ${fieldHtml("¿Qué me trajo de positivo lo negativo?", e.negativo)}
+      ${fieldHtml("¿A quién o a qué he beneficiado hoy?", e.beneficio)}
+      ${fieldHtml("¿De qué he gozado hoy?", e.gozo)}
+      ${fieldHtml("¿En qué he progresado hoy?", e.progreso)}
+      ${fieldHtml("Programación del sueño", e.sueno)}
+      ${fieldHtml("Agradecimiento del día", e.gratitud)}
+    </div>`;
+  };
+
+  const buildDocHtml = (title, subtitle, dayEntries) => `<!DOCTYPE html>
+<html lang="es"><head><meta charset="UTF-8"/><title>${escapeHtml(title)}</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>${DOC_STYLES}</style></head><body><div class="doc">
+<div class="cover"><p class="eyebrow">L'Aura · Diario del Psiconauta</p><h1>${escapeHtml(title)}</h1><p class="meta">${escapeHtml(subtitle)}</p></div>
+${nacimientosBlockHtml()}
+${dayEntries.map(({d,e}) => dayBlockHtml(d,e) + '<hr class="divider"/>').join("")}
+<p class="footer">Basado en el método de José María Doria · Escuela Española de Desarrollo Transpersonal (EDT)<br/>— Documento privado —</p>
+</div></body></html>`;
+
+  const downloadDay = d => {
+    const e = getEntry(d);
+    const cd = countdown(d);
+    const html = buildDocHtml("Diario del día " + cd, "Día " + cd + " de la cuenta atrás (Día " + d + "/40) · " + user.nombre, [{ d, e }]);
+    const a = document.createElement("a");
+    a.href = URL.createObjectURL(new Blob([html], { type: "text/html" }));
+    a.download = "diario_dia" + cd + ".html"; a.click();
+  };
+
+  const downloadFullNotebook = () => {
+    const completedDays = Array.from({length:40},(_,i)=>i+1).filter(isComplete);
+    const html = buildDocHtml("Cuaderno completo", completedDays.length + "/40 días completados · " + user.nombre, completedDays.map(d => ({ d, e: getEntry(d) })));
+    const a = document.createElement("a");
+    a.href = URL.createObjectURL(new Blob([html], { type: "text/html" }));
+    a.download = "cuaderno_completo_" + user.nombre.replace(/\s+/g,"_") + ".html";
+    a.click();
+  };
+
+  if (!user && !isAdmin) return (
+    <AuthScreen
+      onLogin={u => setUser(u)}
+      onAdminLogin={() => setIsAdmin(true)}
+    />
+  );
+
+  if (isAdmin) return <AdminPanel onLogout={() => setIsAdmin(false)} />;
+
+  // Vista diario de un día
+  if (selDay) {
+    const d = selDay;
+    const cd = countdown(d);
+    const e = getEntry(d);
+    const leccionKey = LECCION_DIA[d];
+
+    return (
+      <div style={{ background: C.bg, minHeight: "100vh", fontFamily: "Georgia,serif" }}>
+        <div style={{ background: "linear-gradient(160deg,"+C.plumDark+" 0%,"+C.plum+" 100%)", padding: "1rem 1.5rem", display: "flex", alignItems: "center", justifyContent: "space-between" }}>
+          <div>
+            <p style={{ fontSize: 11, color: "#C9B8E0", margin: "0 0 2px", fontFamily: "var(--font-sans)", textTransform: "uppercase", letterSpacing: 1 }}>Día {cd} de la cuenta atrás</p>
+            <p style={{ fontSize: 15, color: "#fff", margin: 0, fontFamily: "Georgia,serif" }}>{user.nombre}</p>
+          </div>
+          <button onClick={() => setSelDay(null)} style={{ background: "rgba(255,255,255,0.15)", border: "none", color: "#fff", padding: "8px 16px", borderRadius: 8, cursor: "pointer", fontSize: 13, fontFamily: "var(--font-sans)" }}>← Calendario</button>
+        </div>
+
+        <div style={{ padding: "1.5rem", maxWidth: 660, margin: "0 auto" }}>
+          {/* Botón lección */}
+          <button onClick={() => DRIVE_LINKS[d] && window.open(DRIVE_LINKS[d], "_blank")}
+            style={{ width: "100%", padding: "14px", background: DRIVE_LINKS[d] ? C.goldLight : C.bgCard, border: "1.5px solid "+(DRIVE_LINKS[d] ? C.gold : C.border), borderRadius: 10, cursor: DRIVE_LINKS[d] ? "pointer" : "default", display: "flex", alignItems: "center", justifyContent: "space-between", marginBottom: 20 }}>
+            <div style={{ textAlign: "left" }}>
+              <p style={{ fontSize: 11, fontFamily: "var(--font-sans)", fontWeight: 700, color: DRIVE_LINKS[d] ? C.gold : C.carbon2, margin: "0 0 2px", textTransform: "uppercase", letterSpacing: 1 }}>
+                {DRIVE_LINKS[d] ? "📖 Lección del día" : "🔜 Lección próximamente"}
+              </p>
+              <p style={{ fontSize: 13, color: DRIVE_LINKS[d] ? C.goldDark : C.carbon2, margin: 0, fontFamily: "var(--font-sans)" }}>
+                Cuenta atrás {typeof leccionKey === "string" ? "Días "+leccionKey : "Día "+leccionKey} · Se abre en nueva pestaña
+              </p>
+            </div>
+            <span style={{ fontSize: 22 }}>📖</span>
+          </button>
+
+          {/* MAÑANA */}
+          <div style={{ background: C.plumLight, borderRadius: 10, padding: "10px 14px", marginBottom: 14, borderLeft: "3px solid "+C.plum }}>
+            <p style={{ fontWeight: 600, fontSize: 14, color: C.plumDark, margin: 0, fontFamily: "var(--font-sans)" }}>☀️ MAÑANA — Día {cd} de la cuenta atrás</p>
+          </div>
+
+          <Section title="1° Nacimiento a..." color={C.plum}>
+            {nacimientos.filter(Boolean).length > 0
+              ? nacimientos.filter(Boolean).map((n,i) => (
+                <div key={i} style={{ background: C.plumLight, borderRadius: 6, padding: "6px 12px", marginBottom: 6, fontSize: 13, color: C.plumDark }}>
+                  <span style={{ fontWeight: 600, fontFamily: "var(--font-sans)" }}>{i+1}.</span> {n}
+                </div>
+              ))
+              : <p style={{ fontSize: 13, color: C.carbon2, fontStyle: "italic", fontFamily: "var(--font-sans)" }}>Cargá tus nacimientos en la pestaña "Nacimientos".</p>
+            }
+          </Section>
+
+          <Section title="2° Título del día" color={C.plum}>
+            <input value={e.titulo||""} onChange={ev => setField(d,"titulo",ev.target.value)}
+              placeholder='"La puerta se abre", "La sincronía del camino"...'
+              style={{ width: "100%", padding: "10px 12px", borderRadius: 8, border: "0.5px solid "+C.border, background: C.bg, color: C.carbon, fontSize: 15, fontStyle: "italic", fontFamily: "Georgia,serif", outline: "none", boxSizing: "border-box" }} />
+          </Section>
+
+          <Section title="3° Decretos positivos" color={C.plum}>
+            <Field hint="Mínimo 3 frases afirmativas. En positivo, presente, primera persona."
+              value={e.decretos||""} onChange={v => setField(d,"decretos",v)} rows={4}
+              placeholder={"Me siento serena y confiada hoy.\nEscucho con amor y comprensión.\nLa energía vital fluye por mí."} />
+          </Section>
+
+          <Section title="4° Agenda evolutiva del día" color={C.plum}>
+            <Field hint="Acciones del día relacionadas con tu crecimiento interior."
+              value={e.agenda||""} onChange={v => setField(d,"agenda",v)} rows={3}
+              placeholder="¿Qué acción de crecimiento me propongo hacer hoy?" />
+          </Section>
+
+          {/* NOCHE */}
+          <div style={{ background: C.nightLight, borderRadius: 10, padding: "10px 14px", margin: "20px 0 14px", borderLeft: "3px solid "+C.night }}>
+            <p style={{ fontWeight: 600, fontSize: 14, color: C.night, margin: 0, fontFamily: "var(--font-sans)" }}>🌙 NOCHE — Cierre del día {cd}</p>
+          </div>
+
+          {[
+            { key:"sucesos", num:"1°", title:"Sucesos mágicos, especiales o significativos", hint:"Recorré el día hora a hora.", ph:"¿Qué aconteció hoy que resonó con tu ser?" },
+            { key:"negativo", num:"2°", title:"¿Qué me trajo de positivo lo negativo?", hint:"¿Qué te enseñó aquello que no ocurrió como querías?", ph:'"El destino escribe recto con líneas torcidas"...' },
+            { key:"beneficio", num:"3°", title:"¿A quién o a qué he beneficiado hoy?", hint:"El supremo gozo de ser útil.", ph:"¿A quién le diste algo hoy?" },
+            { key:"gozo", num:"4°", title:"¿De qué he gozado hoy?", hint:"Restableció el contacto con tus áreas de alegría.", ph:"¿Qué momentos te dieron satisfacción?" },
+            { key:"progreso", num:"5°", title:"¿En qué he progresado hoy?", hint:"Lo importante es la tendencia.", ph:"¿Qué pequeño avance reconocés hoy?" },
+          ].map(item => (
+            <Section key={item.key} title={item.num+" "+item.title} color={C.night}>
+              <Field hint={item.hint} value={e[item.key]||""} onChange={v => setField(d,item.key,v)} rows={3} placeholder={item.ph} />
+            </Section>
+          ))}
+
+          <Section title="6° Programación del sueño" color={C.night}>
+            <Field label='"Decreto a mi mente que durante el sueño me ABRA A..."'
+              value={e.sueno||""} onChange={v => setField(d,"sueno",v)} rows={2}
+              placeholder="Decreto a mi mente que durante el sueño me abra a..." />
+          </Section>
+
+          <Section title="7° Agradecimiento del día" color={C.night}>
+            <Field hint="¡¡¡ Gracias al Universo por el día de hoy !!!"
+              value={e.gratitud||""} onChange={v => setField(d,"gratitud",v)} rows={3}
+              placeholder="¿Qué agradecés de este día?" />
+          </Section>
+
+          <div style={{ display: "flex", gap: 8, marginTop: 8 }}>
+            <button onClick={() => saveEntry(d, getEntry(d))}
+              style={{ flex: 2, padding: "12px 0", background: C.plum, color: "#fff", border: "none", borderRadius: 10, fontSize: 14, fontWeight: 600, cursor: "pointer", fontFamily: "var(--font-sans)" }}>
+              {saved ? "✓ Guardado en la nube" : "Guardar"}
+            </button>
+            <button onClick={() => downloadDay(d)}
+              style={{ flex: 1, padding: "12px 0", background: C.bgCard, color: C.carbon, border: "1px solid "+C.border, borderRadius: 10, fontSize: 13, cursor: "pointer", fontFamily: "var(--font-sans)" }}>
+              Descargar 📄
+            </button>
+          </div>
+        </div>
+      </div>
+    );
+  }
+
+  const tabs = [
+    { id: "inicio", label: "🏠 Inicio" },
+    { id: "nacimientos", label: "🌱 Nacimientos" },
+    { id: "calendario", label: "🗓 Calendario" },
+  ];
+
+  return (
+    <div style={{ background: C.bg, minHeight: "100vh", fontFamily: "Georgia,serif" }}>
+      <div style={{ background: "linear-gradient(160deg,"+C.plumDark+" 0%,"+C.plum+" 100%)", padding: "1rem 1.5rem", display: "flex", alignItems: "center", justifyContent: "space-between" }}>
+        <div>
+          <span style={{ fontFamily: "Georgia,serif", fontSize: 15, color: "#fff", letterSpacing: 1 }}>40 Días de Atención Sostenida</span>
+          <span style={{ fontSize: 11, color: "rgba(255,255,255,0.6)", marginLeft: 10, fontFamily: "var(--font-sans)" }}>Día {todayNum}/40 · {user.nombre}</span>
+        </div>
+        <button onClick={() => setUser(null)} style={{ fontSize: 12, color: "rgba(255,255,255,0.6)", background: "none", border: "none", cursor: "pointer", fontFamily: "var(--font-sans)" }}>Salir</button>
+      </div>
+
+      <div style={{ display: "flex", borderBottom: "0.5px solid "+C.border, background: C.bgCard }}>
+        {tabs.map(t => (
+          <button key={t.id} onClick={() => setPage(t.id)}
+            style={{ flex: 1, padding: "10px 6px", background: "none", border: "none", borderBottom: page===t.id?"2px solid "+C.plum:"2px solid transparent", color: page===t.id?C.plum:C.carbon2, fontWeight: page===t.id?600:400, fontSize: 13, cursor: "pointer", fontFamily: "var(--font-sans)" }}>
+            {t.label}
+          </button>
+        ))}
+      </div>
+
+      <div style={{ padding: "1.5rem", maxWidth: 660, margin: "0 auto" }}>
+
+        {page === "inicio" && (
+          <div>
+            <p style={{ fontFamily: "Georgia,serif", fontSize: 17, color: C.plumDark, fontStyle: "italic", margin: "0 0 6px" }}>Bienvenida, {user.nombre}</p>
+            <p style={{ fontSize: 14, color: C.carbon2, lineHeight: 1.8, marginBottom: "1.5rem", fontFamily: "var(--font-sans)" }}>
+              Este es tu espacio sagrado y privado de reconexión. Tu diario se guarda en la nube — podés acceder desde cualquier dispositivo.
+            </p>
+            <div style={{ background: C.bgCard, borderRadius: 12, padding: "1.25rem", marginBottom: 16, border: "0.5px solid "+C.border }}>
+              <p style={{ fontFamily: "var(--font-sans)", fontWeight: 700, fontSize: 13, color: C.plum, marginBottom: 10, textTransform: "uppercase", letterSpacing: 1 }}>¿Qué es este proceso?</p>
+              <p style={{ fontSize: 15, lineHeight: 1.9, color: C.carbon, margin: 0 }}>
+                Durante 40 días te disponés a desarrollar un progresivo <strong>"darse cuenta"</strong> de las corrientes internas que configuran tus relaciones, tu carácter y tu destino. Basado en el método de <strong>José María Doria</strong> / Escuela Española de Desarrollo Transpersonal.
+              </p>
+            </div>
+            <div style={{ background: C.goldLight, borderRadius: 12, padding: "1.25rem", marginBottom: 16, borderLeft: "3px solid "+C.gold }}>
+              <p style={{ fontFamily: "var(--font-sans)", fontWeight: 700, fontSize: 13, color: C.gold, marginBottom: 10, textTransform: "uppercase", letterSpacing: 1 }}>Cada día tiene</p>
+              {[["☀️ Mañana","Nacimientos · Título · Decretos · Agenda evolutiva"],["🌙 Noche","7 secciones de cierre del día"],["📖 Lección","Se desbloquea día a día"]].map(([t,d]) => (
+                <div key={t} style={{ display: "flex", gap: 10, marginBottom: 8 }}>
+                  <span style={{ fontSize: 16, flexShrink: 0 }}>{t.split(" ")[0]}</span>
+                  <div><p style={{ fontFamily: "var(--font-sans)", fontWeight: 600, fontSize: 13, color: C.goldDark, margin: "0 0 1px" }}>{t.substring(3)}</p><p style={{ fontSize: 13, color: C.goldDark, margin: 0 }}>{d}</p></div>
+                </div>
+              ))}
+            </div>
+            <div style={{ display: "grid", gridTemplateColumns: "repeat(3,1fr)", gap: 10 }}>
+              {[
+                { l: "Día actual", v: todayNum, c: C.plum, bg: C.plumLight },
+                { l: "Completados", v: Array.from({length:40},(_,i)=>i+1).filter(isComplete).length, c: C.gold, bg: C.goldLight },
+                { l: "Cuenta atrás", v: countdown(todayNum), c: C.plumDark, bg: C.plumLight },
+              ].map(m => (
+                <div key={m.l} style={{ background: m.bg, borderRadius: 10, padding: "0.75rem", textAlign: "center" }}>
+                  <div style={{ fontSize: 24, fontWeight: 600, color: m.c, fontFamily: "var(--font-sans)" }}>{m.v}</div>
+                  <div style={{ fontSize: 11, color: C.carbon2, marginTop: 3, fontFamily: "var(--font-sans)" }}>{m.l}</div>
+                </div>
+              ))}
+            </div>
+
+            {(() => {
+              const completados = Array.from({length:40},(_,i)=>i+1).filter(isComplete).length;
+              return (
+                <button onClick={downloadFullNotebook}
+                  style={{ width: "100%", marginTop: 16, padding: "14px", background: completados === 40 ? C.plum : C.bgCard, color: completados === 40 ? "#fff" : C.plumDark, border: "1.5px solid "+C.plum, borderRadius: 10, cursor: "pointer", fontSize: 14, fontWeight: 600, fontFamily: "var(--font-sans)", display: "flex", alignItems: "center", justifyContent: "center", gap: 8 }}>
+                  📚 Descargar mi cuaderno completo ({completados}/40 días)
+                </button>
+              );
+            })()}
+          </div>
+        )}
+
+        {page === "nacimientos" && (
+          <div>
+            <p style={{ fontFamily: "Georgia,serif", fontSize: 17, color: C.plumDark, fontStyle: "italic", marginBottom: 8 }}>Mis Nacimientos a...</p>
+            <p style={{ fontSize: 13, color: C.carbon2, lineHeight: 1.8, marginBottom: 12, fontFamily: "var(--font-sans)" }}>
+              Escribí hasta 7 formulaciones en <strong>positivo</strong>, <strong>tiempo presente</strong> y <strong>primera persona</strong>. Aparecen automáticamente cada mañana.
+            </p>
+            <p style={{ fontSize: 12, color: C.carbon2, fontStyle: "italic", marginBottom: 16, fontFamily: "var(--font-sans)" }}>Ej: "Nacimiento a una vida en la que siento confianza y serenidad"</p>
+            {nacimientos.map((n, i) => (
+              <div key={i} style={{ display: "flex", alignItems: "center", gap: 8, marginBottom: 8 }}>
+                <span style={{ background: C.plum, color: "#fff", borderRadius: "50%", width: 22, height: 22, display: "flex", alignItems: "center", justifyContent: "center", fontSize: 11, flexShrink: 0, fontFamily: "var(--font-sans)", fontWeight: 700 }}>{i+1}</span>
+                <input value={n} onChange={e => { const arr=[...nacimientos]; arr[i]=e.target.value; saveNacimientos(arr); }}
+                  placeholder="Nacimiento a..."
+                  style={{ flex: 1, padding: "8px 12px", borderRadius: 8, border: "0.5px solid "+(n?C.plum:C.border), background: C.bg, color: C.carbon, fontSize: 14, fontFamily: "Georgia,serif", outline: "none" }} />
+              </div>
+            ))}
+            <p style={{ fontSize: 11, color: C.carbon2, marginTop: 10, fontFamily: "var(--font-sans)" }}>Se guardan automáticamente en la nube · Máximo 7</p>
+          </div>
+        )}
+
+        {page === "calendario" && (
+          <div>
+            <p style={{ fontSize: 14, color: C.carbon2, lineHeight: 1.8, marginBottom: "1rem", fontFamily: "var(--font-sans)" }}>
+              Tocá un día disponible para ver la lección y completar tu diario.
+            </p>
+            <div style={{ display: "flex", flexWrap: "wrap", gap: 8, marginBottom: "1.5rem" }}>
+              {Array.from({length:40},(_,i)=>i+1).map(d => {
+                const cd = countdown(d);
+                const avail = d <= todayNum;
+                const done = isComplete(d);
+                const esPar = typeof LECCION_DIA[d] === "string" && LECCION_DIA[d].includes("-");
+                return (
+                  <div key={d} onClick={() => avail && setSelDay(d)}
+                    style={{ width: 58, borderRadius: 10, padding: "8px 4px", textAlign: "center", cursor: avail?"pointer":"default", background: done?C.plum:avail?C.plumLight:C.bgCard, border: "0.5px solid "+(avail?C.plum:C.border), opacity: avail?1:0.35, transition: "all 0.1s" }}>
+                    <div style={{ fontSize: 10, color: done?"#C9B8E0":C.carbon2, fontFamily: "var(--font-sans)" }}>Día {cd}↓</div>
+                    <div style={{ fontSize: 16, fontWeight: 600, color: done?"#fff":avail?C.plumDark:C.carbon2, fontFamily: "var(--font-sans)" }}>{d}</div>
+                    {esPar && <div style={{ fontSize: 9, color: done?"#C9B8E0":C.gold, fontFamily: "var(--font-sans)" }}>par</div>}
+                    {done && <div style={{ fontSize: 10, color: "#fff" }}>✓</div>}
+                  </div>
+                );
+              })}
+            </div>
+            <div style={{ display: "flex", gap: 10, flexWrap: "wrap", fontSize: 12, color: C.carbon2, fontFamily: "var(--font-sans)" }}>
+              <span><span style={{ background: C.plum, color: "#fff", padding: "2px 8px", borderRadius: 4 }}>■</span> Completado</span>
+              <span><span style={{ background: C.plumLight, padding: "2px 8px", borderRadius: 4 }}>■</span> Disponible</span>
+              <span><span style={{ background: C.bgCard, padding: "2px 8px", borderRadius: 4, border: "0.5px solid "+C.border }}>■</span> Bloqueado</span>
+            </div>
+          </div>
+        )}
+      </div>
+    </div>
+  );
+}
+
+const root = ReactDOM.createRoot(document.getElementById("root"));
+root.render(<App />);
+
+</script>
+</body>
+</html>
